@@ -183,7 +183,7 @@
     const scrollY = window.scrollY;
 
     host.style.top = `${rect.top + scrollY + (rect.height - 28) / 2}px`;
-    host.style.left = `${rect.right + scrollX - 34}px`;
+    host.style.left = `${rect.right + scrollX + 4}px`;
   }
 
   function fillInput(input, email) {

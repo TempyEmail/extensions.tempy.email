@@ -1,0 +1,59 @@
+name: Pack and Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set version
+        run: |
+          VERSION="1.0.${{ github.run_number }}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+          # Update Chrome manifest version
+          jq --arg v "$VERSION" '.version = $v' manifest.json > manifest.tmp && mv manifest.tmp manifest.json
+
+          # Update Firefox manifest version
+          jq --arg v "$VERSION" '.version = $v' manifest.firefox.json > manifest.tmp && mv manifest.tmp manifest.firefox.json
+
+      - name: Pack Chrome extension
+        run: |
+          mkdir -p dist
+          # Copy files for Chrome build
+          mkdir -p build-chrome
+          cp manifest.json build-chrome/
+          cp -r background popup content icons build-chrome/
+          cd build-chrome && zip -r ../dist/tempy-email-chrome-v${VERSION}.zip . && cd ..
+          rm -rf build-chrome
+
+      - name: Pack Firefox extension
+        run: |
+          # Copy files for Firefox build
+          mkdir -p build-firefox
+          cp manifest.firefox.json build-firefox/manifest.json
+          cp -r background popup content icons build-firefox/
+          cd build-firefox && zip -r ../dist/tempy-email-firefox-v${VERSION}.zip . && cd ..
+          rm -rf build-firefox
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
+          body: |
+            ## Tempy Email Browser Extension v${{ env.VERSION }}
+
+            ### Downloads
+            - **Chrome**: `tempy-email-chrome-v${{ env.VERSION }}.zip` — Load via `chrome://extensions` (Developer mode → Load unpacked)
+            - **Firefox**: `tempy-email-firefox-v${{ env.VERSION }}.zip` — Load via `about:debugging` → This Firefox → Load Temporary Add-on
+          files: |
+            dist/tempy-email-chrome-v${{ env.VERSION }}.zip
+            dist/tempy-email-firefox-v${{ env.VERSION }}.zip

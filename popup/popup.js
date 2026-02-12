@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Generate button
 generateBtn.addEventListener("click", async () => {
   generateBtn.disabled = true;
-  generateBtn.textContent = "...";
+  generateBtn.innerHTML = '<span class="spinner"></span>';
   hideError();
 
   try {
@@ -83,14 +83,22 @@ async function loadRecentEmails() {
     const remaining = getRemaining(entry.expiresAt);
 
     li.innerHTML = `
-      <div class="email-address">${escapeHtml(entry.email)}</div>
+      <div class="email-row">
+        <div class="email-address">${escapeHtml(entry.email)}</div>
+        <button class="btn-icon btn-newtab" data-url="${escapeHtml(entry.webUrl)}" title="Open inbox in new tab">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 8.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.5"/>
+            <path d="M10 2h4v4"/>
+            <path d="M7 9L14 2"/>
+          </svg>
+        </button>
+      </div>
       <div class="email-meta">
         <span class="email-timer ${remaining > 0 ? "active" : "expired"}">
           ${formatTimer(remaining)}
         </span>
         <div class="email-actions">
           <button class="btn-sm btn-copy" data-email="${escapeHtml(entry.email)}">Copy</button>
-          <button class="btn-sm btn-open" data-url="${escapeHtml(entry.webUrl)}">Open Inbox</button>
         </div>
       </div>
     `;
@@ -110,7 +118,7 @@ async function loadRecentEmails() {
     });
   });
 
-  emailList.querySelectorAll(".btn-open").forEach((btn) => {
+  emailList.querySelectorAll(".btn-newtab").forEach((btn) => {
     btn.addEventListener("click", () => {
       chrome.tabs.create({ url: btn.dataset.url });
     });
