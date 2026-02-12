@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 380px;
+  max-height: 520px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #fff;
+  overflow-y: auto;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.brand {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ff6b35;
+}
+
+#generate-btn {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#generate-btn:hover {
+  background: #ff8c42;
+}
+
+#generate-btn:active {
+  background: #e55a28;
+}
+
+#generate-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+/* Error banner */
+.error-banner {
+  padding: 8px 16px;
+  background: #fff0eb;
+  color: #c0392b;
+  font-size: 12px;
+  border-bottom: 1px solid #fdd;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Main */
+main {
+  min-height: 100px;
+}
+
+.empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  color: #888;
+}
+
+.empty-state p {
+  margin-bottom: 4px;
+}
+
+.hint {
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* Email list */
+.email-list {
+  list-style: none;
+}
+
+.email-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.1s;
+}
+
+.email-item:hover {
+  background: #fafafa;
+}
+
+.email-address {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #1a1a1a;
+  word-break: break-all;
+}
+
+.email-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.email-timer {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.email-timer.active {
+  color: #ff6b35;
+}
+
+.email-timer.expired {
+  color: #999;
+}
+
+.email-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-sm {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.btn-sm:hover {
+  border-color: #ff6b35;
+  color: #ff6b35;
+}
+
+.btn-sm.copied {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+/* Footer / Settings */
+footer {
+  padding: 10px 16px 12px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+}
+
+.toggle input[type="checkbox"] {
+  accent-color: #ff6b35;
+  width: 14px;
+  height: 14px;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.clear-btn:hover {
+  color: #c0392b;
+}

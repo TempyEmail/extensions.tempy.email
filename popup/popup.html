@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=380, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="../icons/icon-32.png" alt="tempy.email" class="logo">
+      <span class="brand">tempy.email</span>
+    </div>
+    <button id="generate-btn">Generate</button>
+  </header>
+
+  <main>
+    <div id="error-banner" class="error-banner hidden"></div>
+    <div id="empty-state" class="empty-state">
+      <p>No recent emails yet.</p>
+      <p class="hint">Click Generate or right-click an email field on any website.</p>
+    </div>
+    <ul id="email-list" class="email-list"></ul>
+  </main>
+
+  <footer>
+    <div class="settings">
+      <label class="toggle">
+        <input type="checkbox" id="setting-auto-detect" checked>
+        <span>Show icon on email fields</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="setting-auto-open">
+        <span>Auto-open inbox in new tab</span>
+      </label>
+    </div>
+    <button id="clear-btn" class="clear-btn">Clear history</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
