@@ -15,7 +15,8 @@ jobs:
 
       - name: Set version
         run: |
-          VERSION="1.0.${{ github.run_number }}"
+          MAJOR_MINOR=$(jq -r '.version' package.json | cut -d. -f1,2)
+          VERSION="${MAJOR_MINOR}.${{ github.run_number }}"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
           # Update Chrome manifest version
