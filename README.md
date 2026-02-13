@@ -28,18 +28,16 @@ This extension brings tempy.email directly into your browser so you never have t
 
 ## Supported Languages
 
-| Language | Rationale |
-| --- | --- |
-| English | Default — US, UK, India, global tech |
-| Spanish | Latin America + Spain — massive internet growth |
-| Portuguese (Brazil) | Brazil — huge tech-savvy population |
-| German | Germany, Austria, Switzerland — privacy-conscious market |
-| French | France, Belgium, West Africa — large internet user base |
-| Japanese | High internet penetration, privacy-aware culture |
-| Russian | Large internet population, high demand for privacy tools |
-| Korean | Very high internet penetration, tech-forward |
-| Turkish | Large, young, internet-active population |
-| Polish | Strong Central European tech community, privacy-aware (EU/GDPR) |
+- English — Browser extension for tempy.email that generates disposable email addresses instantly from any website.
+- Español — Extensión de navegador para tempy.email que genera direcciones de correo desechables al instante desde cualquier sitio web.
+- Português (Brasil) — Extensão de navegador para tempy.email que gera endereços de e-mail descartáveis instantaneamente a partir de qualquer site.
+- Deutsch — Browser-Erweiterung für tempy.email, die sofort Wegwerf-E-Mail-Adressen von jeder Website erzeugt.
+- Français — Extension de navigateur pour tempy.email qui génère instantanément des adresses e-mail jetables depuis n'importe quel site.
+- 日本語 — tempy.email 用のブラウザ拡張機能で、どのサイトからでも使い捨てメールアドレスを即座に生成します。
+- Русский — Расширение браузера для tempy.email, которое мгновенно создает одноразовые адреса электронной почты с любого сайта.
+- 한국어 — tempy.email용 브라우저 확장 프로그램으로 어떤 웹사이트에서든 즉시 일회용 이메일 주소를 생성합니다.
+- Türkçe — tempy.email için tarayıcı uzantısı; herhangi bir web sitesinden anında tek kullanımlık e-posta adresleri oluşturur.
+- Polski — Rozszerzenie przeglądarki dla tempy.email, które natychmiast tworzy jednorazowe adresy e-mail z dowolnej strony.
 
 ## Installation
 
