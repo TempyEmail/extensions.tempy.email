@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "即時の使い捨てメールアドレス — どのサイトからでも @tempy.email の受信箱を生成。登録不要、個人情報不要、完全匿名。"
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Tempy Email を生成"
+  },
+  "popup_generate": {
+    "message": "生成"
+  },
+  "popup_no_recent": {
+    "message": "最近のメールはまだありません。"
+  },
+  "popup_hint_right_click": {
+    "message": "「生成」をクリックするか、任意のサイトのメール欄を右クリックしてください。"
+  },
+  "popup_received_messages": {
+    "message": "受信メッセージ"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "メール欄にアイコンを表示"
+  },
+  "popup_auto_open_inbox": {
+    "message": "受信箱を新しいタブで自動的に開く"
+  },
+  "popup_clear_history": {
+    "message": "履歴を消去"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "受信箱を新しいタブで開く"
+  },
+  "popup_copy": {
+    "message": "コピー"
+  },
+  "popup_copied": {
+    "message": "コピーしました！"
+  },
+  "popup_open_inbox": {
+    "message": "受信箱を開く"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "tempy.emailで開く"
+  },
+  "popup_error_generate_failed": {
+    "message": "メールの生成に失敗しました"
+  },
+  "popup_timer_expired": {
+    "message": "期限切れ"
+  },
+  "popup_timer_remaining": {
+    "message": "残り $MINUTES$:$SECONDS$",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "不明"
+  },
+  "popup_no_subject": {
+    "message": "(件名なし)"
+  },
+  "popup_otp_label": {
+    "message": "コード: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "リクエストが多すぎます。少し待ってから再試行してください。"
+  },
+  "error_api_status": {
+    "message": "API エラー: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

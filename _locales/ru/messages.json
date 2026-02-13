@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Мгновенные одноразовые адреса — создайте почтовый ящик @tempy.email с любого сайта. Без регистрации, без личных данных, полностью анонимно."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Создать Tempy Email"
+  },
+  "popup_generate": {
+    "message": "Создать"
+  },
+  "popup_no_recent": {
+    "message": "Пока нет недавних писем."
+  },
+  "popup_hint_right_click": {
+    "message": "Нажмите «Создать» или щёлкните правой кнопкой по полю e-mail на любом сайте."
+  },
+  "popup_received_messages": {
+    "message": "Полученные сообщения"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Показывать значок в полях e-mail"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Автоматически открывать ящик в новой вкладке"
+  },
+  "popup_clear_history": {
+    "message": "Очистить историю"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Открыть ящик в новой вкладке"
+  },
+  "popup_copy": {
+    "message": "Копировать"
+  },
+  "popup_copied": {
+    "message": "Скопировано!"
+  },
+  "popup_open_inbox": {
+    "message": "Открыть ящик"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Открыть на tempy.email"
+  },
+  "popup_error_generate_failed": {
+    "message": "Не удалось создать адрес"
+  },
+  "popup_timer_expired": {
+    "message": "Истекло"
+  },
+  "popup_timer_remaining": {
+    "message": "Осталось $MINUTES$:$SECONDS$",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Неизвестно"
+  },
+  "popup_no_subject": {
+    "message": "(Без темы)"
+  },
+  "popup_otp_label": {
+    "message": "Код: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Достигнут лимит запросов. Подождите немного и попробуйте снова."
+  },
+  "error_api_status": {
+    "message": "Ошибка API: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

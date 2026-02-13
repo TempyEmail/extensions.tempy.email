@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Endereços de e-mail descartáveis instantâneos — gere uma caixa @tempy.email em qualquer site. Sem cadastro, sem dados pessoais, totalmente anônimo."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Gerar Tempy Email"
+  },
+  "popup_generate": {
+    "message": "Gerar"
+  },
+  "popup_no_recent": {
+    "message": "Nenhum e-mail recente ainda."
+  },
+  "popup_hint_right_click": {
+    "message": "Clique em Gerar ou clique com o botão direito em um campo de e-mail em qualquer site."
+  },
+  "popup_received_messages": {
+    "message": "Mensagens recebidas"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Mostrar ícone em campos de e-mail"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Abrir a caixa automaticamente em uma nova aba"
+  },
+  "popup_clear_history": {
+    "message": "Limpar histórico"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Abrir caixa em uma nova aba"
+  },
+  "popup_copy": {
+    "message": "Copiar"
+  },
+  "popup_copied": {
+    "message": "Copiado!"
+  },
+  "popup_open_inbox": {
+    "message": "Abrir caixa"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Abrir no tempy.email"
+  },
+  "popup_error_generate_failed": {
+    "message": "Falha ao gerar e-mail"
+  },
+  "popup_timer_expired": {
+    "message": "Expirado"
+  },
+  "popup_timer_remaining": {
+    "message": "$MINUTES$:$SECONDS$ restantes",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Desconhecido"
+  },
+  "popup_no_subject": {
+    "message": "(Sem assunto)"
+  },
+  "popup_otp_label": {
+    "message": "Código: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Limite de requisições atingido. Aguarde um momento e tente novamente."
+  },
+  "error_api_status": {
+    "message": "Erro da API: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

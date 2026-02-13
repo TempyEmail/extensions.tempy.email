@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "즉시 사용하는 일회용 이메일 주소 — 어떤 웹사이트에서도 @tempy.email 받은편지함을 생성합니다. 가입 없음, 개인정보 없음, 완전 익명."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Tempy Email 생성"
+  },
+  "popup_generate": {
+    "message": "생성"
+  },
+  "popup_no_recent": {
+    "message": "최근 이메일이 없습니다."
+  },
+  "popup_hint_right_click": {
+    "message": "생성을 누르거나 어떤 사이트의 이메일 입력란을 우클릭하세요."
+  },
+  "popup_received_messages": {
+    "message": "받은 메시지"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "이메일 입력란에 아이콘 표시"
+  },
+  "popup_auto_open_inbox": {
+    "message": "새 탭에서 받은편지함 자동 열기"
+  },
+  "popup_clear_history": {
+    "message": "기록 지우기"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "새 탭에서 받은편지함 열기"
+  },
+  "popup_copy": {
+    "message": "복사"
+  },
+  "popup_copied": {
+    "message": "복사됨!"
+  },
+  "popup_open_inbox": {
+    "message": "받은편지함 열기"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "tempy.email에서 열기"
+  },
+  "popup_error_generate_failed": {
+    "message": "이메일을 생성하지 못했습니다"
+  },
+  "popup_timer_expired": {
+    "message": "만료됨"
+  },
+  "popup_timer_remaining": {
+    "message": "남은 시간 $MINUTES$:$SECONDS$",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "알 수 없음"
+  },
+  "popup_no_subject": {
+    "message": "(제목 없음)"
+  },
+  "popup_otp_label": {
+    "message": "코드: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "요청이 너무 많습니다. 잠시 후 다시 시도하세요."
+  },
+  "error_api_status": {
+    "message": "API 오류: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Sofortige Wegwerf-E-Mail-Adressen – erzeuge ein @tempy.email-Postfach von jeder Website aus. Keine Registrierung, keine persönlichen Daten, vollständig anonym."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Tempy Email erstellen"
+  },
+  "popup_generate": {
+    "message": "Erstellen"
+  },
+  "popup_no_recent": {
+    "message": "Noch keine aktuellen E-Mails."
+  },
+  "popup_hint_right_click": {
+    "message": "Klicke auf Erstellen oder klicke mit der rechten Maustaste auf ein E-Mail-Feld auf einer beliebigen Website."
+  },
+  "popup_received_messages": {
+    "message": "Empfangene Nachrichten"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Symbol in E-Mail-Feldern anzeigen"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Postfach automatisch in neuem Tab öffnen"
+  },
+  "popup_clear_history": {
+    "message": "Verlauf löschen"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Postfach in neuem Tab öffnen"
+  },
+  "popup_copy": {
+    "message": "Kopieren"
+  },
+  "popup_copied": {
+    "message": "Kopiert!"
+  },
+  "popup_open_inbox": {
+    "message": "Postfach öffnen"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Auf tempy.email öffnen"
+  },
+  "popup_error_generate_failed": {
+    "message": "E-Mail konnte nicht erstellt werden"
+  },
+  "popup_timer_expired": {
+    "message": "Abgelaufen"
+  },
+  "popup_timer_remaining": {
+    "message": "$MINUTES$:$SECONDS$ verbleibend",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Unbekannt"
+  },
+  "popup_no_subject": {
+    "message": "(Kein Betreff)"
+  },
+  "popup_otp_label": {
+    "message": "Code: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Anfragelimit erreicht. Bitte kurz warten und erneut versuchen."
+  },
+  "error_api_status": {
+    "message": "API-Fehler: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

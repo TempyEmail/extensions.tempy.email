@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Direcciones de correo desechables al instante: genera un buzón @tempy.email desde cualquier sitio web. Sin registro, sin datos personales, totalmente anónimo."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Generar Tempy Email"
+  },
+  "popup_generate": {
+    "message": "Generar"
+  },
+  "popup_no_recent": {
+    "message": "Aún no hay correos recientes."
+  },
+  "popup_hint_right_click": {
+    "message": "Haz clic en Generar o haz clic derecho en un campo de correo en cualquier sitio web."
+  },
+  "popup_received_messages": {
+    "message": "Mensajes recibidos"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Mostrar icono en campos de correo"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Abrir automáticamente la bandeja en una nueva pestaña"
+  },
+  "popup_clear_history": {
+    "message": "Borrar historial"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Abrir bandeja en una nueva pestaña"
+  },
+  "popup_copy": {
+    "message": "Copiar"
+  },
+  "popup_copied": {
+    "message": "¡Copiado!"
+  },
+  "popup_open_inbox": {
+    "message": "Abrir bandeja"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Abrir en tempy.email"
+  },
+  "popup_error_generate_failed": {
+    "message": "No se pudo generar el correo"
+  },
+  "popup_timer_expired": {
+    "message": "Caducado"
+  },
+  "popup_timer_remaining": {
+    "message": "$MINUTES$:$SECONDS$ restantes",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Desconocido"
+  },
+  "popup_no_subject": {
+    "message": "(Sin asunto)"
+  },
+  "popup_otp_label": {
+    "message": "Código: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Se alcanzó el límite de solicitudes. Espera un momento y vuelve a intentarlo."
+  },
+  "error_api_status": {
+    "message": "Error de la API: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

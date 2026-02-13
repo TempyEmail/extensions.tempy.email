@@ -8,12 +8,36 @@ const settingAutoOpen = document.getElementById("setting-auto-open");
 const messagesContainer = document.getElementById("messages-container");
 const messagesList = document.getElementById("messages-list");
 
+const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
+const STR = {
+  generate: i18n("popup_generate"),
+  generateFailed: i18n("popup_error_generate_failed"),
+  openInboxNewTabTitle: i18n("popup_open_inbox_new_tab_title"),
+  copy: i18n("popup_copy"),
+  copied: i18n("popup_copied"),
+  openInbox: i18n("popup_open_inbox"),
+  openOnTempyTitle: i18n("popup_open_on_tempy_title"),
+  timerExpired: i18n("popup_timer_expired"),
+  unknownSender: i18n("popup_unknown_sender"),
+  noSubject: i18n("popup_no_subject"),
+};
+
 let timerInterval = null;
 let pollingInterval = null;
 let currentMailbox = null;
 
+function localizePage() {
+  document.documentElement.lang = chrome.i18n.getUILanguage();
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.dataset.i18n;
+    const msg = i18n(key);
+    if (msg) el.textContent = msg;
+  });
+}
+
 // Initialize
 document.addEventListener("DOMContentLoaded", async () => {
+  localizePage();
   await loadSettings();
   await loadRecentEmails();
   startTimerUpdates();
@@ -40,13 +64,13 @@ generateBtn.addEventListener("click", async () => {
         await fetchMessages();
       }
     } else {
-      showError(resp.error || "Failed to generate email");
+      showError(resp.error || STR.generateFailed);
     }
   } catch (err) {
     showError(err.message);
   } finally {
     generateBtn.disabled = false;
-    generateBtn.textContent = "Generate";
+    generateBtn.textContent = STR.generate;
   }
 });
 
@@ -106,7 +130,7 @@ async function loadRecentEmails() {
     li.innerHTML = `
       <div class="email-row">
         <div class="email-address">${escapeHtml(entry.email)}</div>
-        <button class="btn-icon btn-newtab" data-url="${escapeHtml(entry.webUrl)}" title="Open inbox in new tab">
+        <button class="btn-icon btn-newtab" data-url="${escapeHtml(entry.webUrl)}" title="${escapeHtml(STR.openInboxNewTabTitle)}" aria-label="${escapeHtml(STR.openInboxNewTabTitle)}">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 8.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.5"/>
             <path d="M10 2h4v4"/>
@@ -119,9 +143,9 @@ async function loadRecentEmails() {
           ${formatTimer(remaining)}
         </span>
         <div class="email-actions">
-          <button class="btn-sm btn-copy" data-email="${escapeHtml(entry.email)}">Copy</button>
-          <button class="btn-sm btn-open" data-url="${escapeHtml(entry.webUrl)}">Open Inbox</button>
-          <button class="btn-sm btn-icon btn-open-web" data-email="${escapeHtml(entry.email)}" title="Open on tempy.email">
+          <button class="btn-sm btn-copy" data-email="${escapeHtml(entry.email)}">${escapeHtml(STR.copy)}</button>
+          <button class="btn-sm btn-open" data-url="${escapeHtml(entry.webUrl)}">${escapeHtml(STR.openInbox)}</button>
+          <button class="btn-sm btn-icon btn-open-web" data-email="${escapeHtml(entry.email)}" title="${escapeHtml(STR.openOnTempyTitle)}" aria-label="${escapeHtml(STR.openOnTempyTitle)}">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 10H2V2H6V1H2C1.45 1 1 1.45 1 2V10C1 10.55 1.45 11 2 11H10C10.55 11 11 10.55 11 10V6H10V10ZM7 1V2H9.59L3.76 7.83L4.46 8.53L10.29 2.71V5.29H11.29V1H7Z" fill="currentColor"/>
             </svg>
@@ -136,10 +160,10 @@ async function loadRecentEmails() {
   emailList.querySelectorAll(".btn-copy").forEach((btn) => {
     btn.addEventListener("click", async () => {
       await navigator.clipboard.writeText(btn.dataset.email);
-      btn.textContent = "Copied!";
+      btn.textContent = STR.copied;
       btn.classList.add("copied");
       setTimeout(() => {
-        btn.textContent = "Copy";
+        btn.textContent = STR.copy;
         btn.classList.remove("copied");
       }, 1500);
     });
@@ -177,10 +201,10 @@ function getRemaining(expiresAt) {
 }
 
 function formatTimer(seconds) {
-  if (seconds <= 0) return "Expired";
+  if (seconds <= 0) return STR.timerExpired;
   const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${m}:${s.toString().padStart(2, "0")} remaining`;
+  const s = String(seconds % 60).padStart(2, "0");
+  return i18n("popup_timer_remaining", [String(m), s]);
 }
 
 function showError(msg) {
@@ -246,8 +270,8 @@ function displayMessages(messages) {
     const otp = extractOTP(msg.body_text || "");
 
     li.innerHTML = `
-      <div class="message-from">${escapeHtml(msg.from || "Unknown")}</div>
-      <div class="message-subject">${escapeHtml(msg.subject || "(No subject)")}</div>
+      <div class="message-from">${escapeHtml(msg.from || STR.unknownSender)}</div>
+      <div class="message-subject">${escapeHtml(msg.subject || STR.noSubject)}</div>
       ${otp ? `<div class="message-otp">${escapeHtml(otp)}</div>` : ""}
     `;
 
@@ -264,12 +288,12 @@ function extractOTP(content) {
   // Look for codes near verification/OTP keywords first
   const contextMatch = content.match(/(?:code|otp|pin|verification|verify|confirm)[:\s]*(\d{4,8})/i)
     || content.match(/(\d{4,8})\s*(?:is your|is the)/i);
-  if (contextMatch) return `OTP: ${contextMatch[1]}`;
+  if (contextMatch) return i18n("popup_otp_label", [contextMatch[1]]);
 
   // Fall back to standalone 4-8 digit numbers (skip years like 2024-2030)
   const matches = content.match(/\b(?!20[2-3]\d\b)\d{4,8}\b/g);
   if (matches && matches.length > 0) {
-    return `OTP: ${matches[0]}`;
+    return i18n("popup_otp_label", [matches[0]]);
   }
   return null;
 }

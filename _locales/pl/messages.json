@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Natychmiastowe jednorazowe adresy e-mail — generuj skrzynkę @tempy.email z dowolnej strony. Bez rejestracji, bez danych osobowych, całkowicie anonimowo."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Generuj Tempy Email"
+  },
+  "popup_generate": {
+    "message": "Generuj"
+  },
+  "popup_no_recent": {
+    "message": "Brak ostatnich wiadomości."
+  },
+  "popup_hint_right_click": {
+    "message": "Kliknij Generuj lub kliknij prawym przyciskiem pola e-mail na dowolnej stronie."
+  },
+  "popup_received_messages": {
+    "message": "Odebrane wiadomości"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Pokaż ikonę przy polach e-mail"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Automatycznie otwieraj skrzynkę w nowej karcie"
+  },
+  "popup_clear_history": {
+    "message": "Wyczyść historię"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Otwórz skrzynkę w nowej karcie"
+  },
+  "popup_copy": {
+    "message": "Kopiuj"
+  },
+  "popup_copied": {
+    "message": "Skopiowano!"
+  },
+  "popup_open_inbox": {
+    "message": "Otwórz skrzynkę"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Otwórz na tempy.email"
+  },
+  "popup_error_generate_failed": {
+    "message": "Nie udało się wygenerować adresu"
+  },
+  "popup_timer_expired": {
+    "message": "Wygasło"
+  },
+  "popup_timer_remaining": {
+    "message": "Pozostało $MINUTES$:$SECONDS$",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Nieznany"
+  },
+  "popup_no_subject": {
+    "message": "(Brak tematu)"
+  },
+  "popup_otp_label": {
+    "message": "Kod: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Osiągnięto limit żądań. Poczekaj chwilę i spróbuj ponownie."
+  },
+  "error_api_status": {
+    "message": "Błąd API: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

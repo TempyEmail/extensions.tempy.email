@@ -1,6 +1,7 @@
 (() => {
   const TEMPY_ATTR = "data-tempy-attached";
   const ICON_SIZE = 20;
+  const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 
   // SVG icon (tempy.email logo)
   const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 437 437" width="${ICON_SIZE}" height="${ICON_SIZE}">
@@ -123,10 +124,13 @@
           stroke: #27ae60;
         }
       </style>
-      <button class="tempy-btn" title="Generate Tempy Email">${ICON_SVG}</button>
+      <button class="tempy-btn" title="">${ICON_SVG}</button>
     `;
 
     const btn = shadow.querySelector(".tempy-btn");
+    const generateTitle = i18n("generate_tempy_email");
+    btn.title = generateTitle;
+    btn.setAttribute("aria-label", generateTitle);
 
     btn.addEventListener("click", async (e) => {
       e.preventDefault();

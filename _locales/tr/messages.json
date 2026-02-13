@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Anında tek kullanımlık e-posta adresleri — herhangi bir web sitesinden @tempy.email gelen kutusu oluşturun. Kayıt yok, kişisel bilgi yok, tamamen anonim."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Tempy Email oluştur"
+  },
+  "popup_generate": {
+    "message": "Oluştur"
+  },
+  "popup_no_recent": {
+    "message": "Henüz son e-posta yok."
+  },
+  "popup_hint_right_click": {
+    "message": "Oluştur'a tıklayın veya herhangi bir sitedeki e-posta alanına sağ tıklayın."
+  },
+  "popup_received_messages": {
+    "message": "Alınan mesajlar"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "E-posta alanlarında simge göster"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Gelen kutusunu yeni sekmede otomatik aç"
+  },
+  "popup_clear_history": {
+    "message": "Geçmişi temizle"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Gelen kutusunu yeni sekmede aç"
+  },
+  "popup_copy": {
+    "message": "Kopyala"
+  },
+  "popup_copied": {
+    "message": "Kopyalandı!"
+  },
+  "popup_open_inbox": {
+    "message": "Gelen kutusunu aç"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "tempy.email'de aç"
+  },
+  "popup_error_generate_failed": {
+    "message": "E-posta oluşturulamadı"
+  },
+  "popup_timer_expired": {
+    "message": "Süresi doldu"
+  },
+  "popup_timer_remaining": {
+    "message": "$MINUTES$:$SECONDS$ kaldı",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Bilinmiyor"
+  },
+  "popup_no_subject": {
+    "message": "(Konu yok)"
+  },
+  "popup_otp_label": {
+    "message": "Kod: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "İstek sınırına ulaşıldı. Lütfen biraz bekleyip tekrar deneyin."
+  },
+  "error_api_status": {
+    "message": "API hatası: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

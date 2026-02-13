@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Instant disposable email addresses — generate a @tempy.email inbox from any website. No signup, no personal info, fully anonymous."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Generate Tempy Email"
+  },
+  "popup_generate": {
+    "message": "Generate"
+  },
+  "popup_no_recent": {
+    "message": "No recent emails yet."
+  },
+  "popup_hint_right_click": {
+    "message": "Click Generate or right-click an email field on any website."
+  },
+  "popup_received_messages": {
+    "message": "Received Messages"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Show icon on email fields"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Auto-open inbox in new tab"
+  },
+  "popup_clear_history": {
+    "message": "Clear history"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Open inbox in new tab"
+  },
+  "popup_copy": {
+    "message": "Copy"
+  },
+  "popup_copied": {
+    "message": "Copied!"
+  },
+  "popup_open_inbox": {
+    "message": "Open Inbox"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Open on tempy.email"
+  },
+  "popup_error_generate_failed": {
+    "message": "Failed to generate email"
+  },
+  "popup_timer_expired": {
+    "message": "Expired"
+  },
+  "popup_timer_remaining": {
+    "message": "$MINUTES$:$SECONDS$ remaining",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Unknown"
+  },
+  "popup_no_subject": {
+    "message": "(No subject)"
+  },
+  "popup_otp_label": {
+    "message": "OTP: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Rate limit reached. Please wait a moment and try again."
+  },
+  "error_api_status": {
+    "message": "API error: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

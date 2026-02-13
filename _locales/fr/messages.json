@@ -1,0 +1,92 @@
+{
+  "ext_name": {
+    "message": "Tempy Email"
+  },
+  "ext_description": {
+    "message": "Adresses e-mail jetables instantanées — générez une boîte @tempy.email depuis n'importe quel site. Sans inscription, sans données personnelles, totalement anonyme."
+  },
+  "action_title": {
+    "message": "Tempy Email"
+  },
+  "generate_tempy_email": {
+    "message": "Générer Tempy Email"
+  },
+  "popup_generate": {
+    "message": "Générer"
+  },
+  "popup_no_recent": {
+    "message": "Aucun e-mail récent."
+  },
+  "popup_hint_right_click": {
+    "message": "Cliquez sur Générer ou faites un clic droit sur un champ e-mail sur n'importe quel site."
+  },
+  "popup_received_messages": {
+    "message": "Messages reçus"
+  },
+  "popup_show_icon_email_fields": {
+    "message": "Afficher l'icône sur les champs e-mail"
+  },
+  "popup_auto_open_inbox": {
+    "message": "Ouvrir automatiquement la boîte dans un nouvel onglet"
+  },
+  "popup_clear_history": {
+    "message": "Effacer l'historique"
+  },
+  "popup_open_inbox_new_tab_title": {
+    "message": "Ouvrir la boîte dans un nouvel onglet"
+  },
+  "popup_copy": {
+    "message": "Copier"
+  },
+  "popup_copied": {
+    "message": "Copié !"
+  },
+  "popup_open_inbox": {
+    "message": "Ouvrir la boîte"
+  },
+  "popup_open_on_tempy_title": {
+    "message": "Ouvrir sur tempy.email"
+  },
+  "popup_error_generate_failed": {
+    "message": "Échec de la génération de l'e-mail"
+  },
+  "popup_timer_expired": {
+    "message": "Expiré"
+  },
+  "popup_timer_remaining": {
+    "message": "$MINUTES$:$SECONDS$ restantes",
+    "placeholders": {
+      "minutes": {
+        "content": "$1"
+      },
+      "seconds": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_unknown_sender": {
+    "message": "Inconnu"
+  },
+  "popup_no_subject": {
+    "message": "(Sans objet)"
+  },
+  "popup_otp_label": {
+    "message": "Code: $CODE$",
+    "placeholders": {
+      "code": {
+        "content": "$1"
+      }
+    }
+  },
+  "error_rate_limit": {
+    "message": "Limite atteinte. Veuillez patienter un moment puis réessayer."
+  },
+  "error_api_status": {
+    "message": "Erreur API: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  }
+}

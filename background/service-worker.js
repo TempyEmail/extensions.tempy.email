@@ -1,10 +1,11 @@
 const API_BASE = "https://tempy.email/api/v1";
+const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 
 // Context menu setup
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "tempy-generate",
-    title: "Generate Tempy Email",
+    title: i18n("generate_tempy_email"),
     contexts: ["editable"],
     documentUrlPatterns: ["https://*/*", "http://*/*"],
   });
@@ -101,10 +102,10 @@ async function createMailbox() {
   });
 
   if (resp.status === 429) {
-    throw new Error("Rate limit reached. Please wait a moment and try again.");
+    throw new Error(i18n("error_rate_limit"));
   }
   if (!resp.ok) {
-    throw new Error(`API error: ${resp.status}`);
+    throw new Error(i18n("error_api_status", [String(resp.status)]));
   }
 
   return resp.json();
