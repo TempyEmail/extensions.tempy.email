@@ -11,7 +11,6 @@ const messagesList = document.getElementById("messages-list");
 let timerInterval = null;
 let pollingInterval = null;
 let currentMailbox = null;
-let currentSha = null;
 
 // Initialize
 document.addEventListener("DOMContentLoaded", async () => {
@@ -37,7 +36,7 @@ generateBtn.addEventListener("click", async () => {
     if (resp.ok) {
       await loadRecentEmails();
       // Immediately fetch messages for the new mailbox
-      if (currentMailbox && currentSha) {
+      if (currentMailbox) {
         await fetchMessages();
       }
     } else {
@@ -85,7 +84,6 @@ async function loadRecentEmails() {
     emailList.innerHTML = "";
     messagesContainer.classList.add("hidden");
     currentMailbox = null;
-    currentSha = null;
     return;
   }
 
@@ -95,7 +93,6 @@ async function loadRecentEmails() {
   // Store current mailbox info for polling
   if (emails[0]) {
     currentMailbox = emails[0].email;
-    currentSha = emails[0].sha;
   }
 
   for (const entry of emails) {
@@ -124,7 +121,7 @@ async function loadRecentEmails() {
         <div class="email-actions">
           <button class="btn-sm btn-copy" data-email="${escapeHtml(entry.email)}">Copy</button>
           <button class="btn-sm btn-open" data-url="${escapeHtml(entry.webUrl)}">Open Inbox</button>
-          <button class="btn-sm btn-icon btn-open-web" data-email="${escapeHtml(entry.email)}" data-sha="${escapeHtml(entry.sha || '')}" title="Open on tempy.email">
+          <button class="btn-sm btn-icon btn-open-web" data-email="${escapeHtml(entry.email)}" title="Open on tempy.email">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 10H2V2H6V1H2C1.45 1 1 1.45 1 2V10C1 10.55 1.45 11 2 11H10C10.55 11 11 10.55 11 10V6H10V10ZM7 1V2H9.59L3.76 7.83L4.46 8.53L10.29 2.71V5.29H11.29V1H7Z" fill="currentColor"/>
             </svg>
@@ -157,8 +154,7 @@ async function loadRecentEmails() {
   emailList.querySelectorAll(".btn-open-web").forEach((btn) => {
     btn.addEventListener("click", () => {
       const email = btn.dataset.email;
-      const sha = btn.dataset.sha;
-      const url = `https://tempy.email/?mailbox=${encodeURIComponent(email)}${sha ? '&sha=' + encodeURIComponent(sha) : ''}`;
+      const url = `https://tempy.email/?mailbox=${encodeURIComponent(email)}`;
       chrome.tabs.create({ url });
     });
   });
@@ -207,24 +203,20 @@ function startPolling() {
   if (pollingInterval) clearInterval(pollingInterval);
 
   pollingInterval = setInterval(async () => {
-    if (currentMailbox && currentSha) {
+    if (currentMailbox) {
       await fetchMessages();
     }
   }, 10000); // Poll every 10 seconds
 
   // Fetch immediately on start
-  if (currentMailbox && currentSha) {
+  if (currentMailbox) {
     fetchMessages();
   }
 }
 
 async function fetchMessages() {
   try {
-    const response = await fetch(`https://tempy.email/api/v1/mailbox/${encodeURIComponent(currentMailbox)}/messages`, {
-      headers: {
-        'X-API-Key': currentSha
-      }
-    });
+    const response = await fetch(`https://tempy.email/api/v1/mailbox/${encodeURIComponent(currentMailbox)}/messages`);
 
     if (!response.ok) {
       console.error("Failed to fetch messages:", response.status);
@@ -260,7 +252,7 @@ function displayMessages(messages) {
     `;
 
     li.addEventListener("click", () => {
-      const url = `https://tempy.email/?mailbox=${encodeURIComponent(currentMailbox)}${currentSha ? '&sha=' + encodeURIComponent(currentSha) : ''}`;
+      const url = `https://tempy.email/?mailbox=${encodeURIComponent(currentMailbox)}`;
       chrome.tabs.create({ url });
     });
 

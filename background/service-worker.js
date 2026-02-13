@@ -116,7 +116,6 @@ async function saveRecentEmail(data) {
     email: data.email,
     webUrl: data.web_url,
     expiresAt: data.expires_at,
-    sha: data.api_key,
     createdAt: new Date().toISOString(),
   }];
 
