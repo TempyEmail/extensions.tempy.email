@@ -1,5 +1,9 @@
 # Tempy Email — Browser Extension
 
+![Pack and Release](https://github.com/TempyEmail/extensions.tempy.email/actions/workflows/release.yml/badge.svg)
+![Unit Tests](https://github.com/TempyEmail/extensions.tempy.email/actions/workflows/tests.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 Browser extension for [tempy.email](https://tempy.email), the instant disposable email service. Generate a temporary `@tempy.email` inbox from any website — no signup, no personal info, fully anonymous.
 
 ## What is tempy.email?
@@ -78,6 +82,10 @@ Every push to `main` triggers the GitHub Actions workflow which:
 2. Packs the Chrome extension (using `manifest.json` with `service_worker`)
 3. Packs the Firefox extension (using `manifest.firefox.json` with `scripts`)
 4. Creates a GitHub Release with both zip files attached
+
+## Testing
+
+Run `npm test` to execute unit tests.
 
 ## License
 

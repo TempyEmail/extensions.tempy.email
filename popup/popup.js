@@ -7,6 +7,7 @@ const settingAutoDetect = document.getElementById("setting-auto-detect");
 const settingAutoOpen = document.getElementById("setting-auto-open");
 const messagesContainer = document.getElementById("messages-container");
 const messagesList = document.getElementById("messages-list");
+const { getRemaining, formatTimer, extractOTP } = TempyUtils;
 
 const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 const STR = {
@@ -140,7 +141,7 @@ async function loadRecentEmails() {
       </div>
       <div class="email-meta">
         <span class="email-timer ${remaining > 0 ? "active" : "expired"}">
-          ${formatTimer(remaining)}
+          ${formatTimer(remaining, (m, s) => i18n("popup_timer_remaining", [String(m), s]), STR.timerExpired)}
         </span>
         <div class="email-actions">
           <button class="btn-sm btn-copy" data-email="${escapeHtml(entry.email)}">${escapeHtml(STR.copy)}</button>
@@ -190,21 +191,10 @@ function startTimerUpdates() {
     emailList.querySelectorAll(".email-item").forEach((li) => {
       const timer = li.querySelector(".email-timer");
       const remaining = getRemaining(li.dataset.expiresAt);
-      timer.textContent = formatTimer(remaining);
+      timer.textContent = formatTimer(remaining, (m, s) => i18n("popup_timer_remaining", [String(m), s]), STR.timerExpired);
       timer.className = `email-timer ${remaining > 0 ? "active" : "expired"}`;
     });
   }, 1000);
-}
-
-function getRemaining(expiresAt) {
-  return Math.max(0, Math.floor((new Date(expiresAt) - Date.now()) / 1000));
-}
-
-function formatTimer(seconds) {
-  if (seconds <= 0) return STR.timerExpired;
-  const m = Math.floor(seconds / 60);
-  const s = String(seconds % 60).padStart(2, "0");
-  return i18n("popup_timer_remaining", [String(m), s]);
 }
 
 function showError(msg) {
@@ -267,7 +257,7 @@ function displayMessages(messages) {
     const li = document.createElement("li");
     li.className = "message-item";
 
-    const otp = extractOTP(msg.body_text || "");
+    const otp = extractOTP(msg.body_text || "", (code) => i18n("popup_otp_label", [code]));
 
     li.innerHTML = `
       <div class="message-from">${escapeHtml(msg.from || STR.unknownSender)}</div>
@@ -282,18 +272,4 @@ function displayMessages(messages) {
 
     messagesList.appendChild(li);
   }
-}
-
-function extractOTP(content) {
-  // Look for codes near verification/OTP keywords first
-  const contextMatch = content.match(/(?:code|otp|pin|verification|verify|confirm)[:\s]*(\d{4,8})/i)
-    || content.match(/(\d{4,8})\s*(?:is your|is the)/i);
-  if (contextMatch) return i18n("popup_otp_label", [contextMatch[1]]);
-
-  // Fall back to standalone 4-8 digit numbers (skip years like 2024-2030)
-  const matches = content.match(/\b(?!20[2-3]\d\b)\d{4,8}\b/g);
-  if (matches && matches.length > 0) {
-    return i18n("popup_otp_label", [matches[0]]);
-  }
-  return null;
 }
