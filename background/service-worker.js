@@ -1,5 +1,4 @@
 const API_BASE = "https://tempy.email/api/v1";
-const MAX_RECENT = 20;
 
 // Context menu setup
 chrome.runtime.onInstalled.addListener(() => {
@@ -112,19 +111,14 @@ async function createMailbox() {
 }
 
 async function saveRecentEmail(data) {
-  const { recentEmails = [] } = await chrome.storage.local.get("recentEmails");
-
-  recentEmails.unshift({
+  // Replace with only the latest email (no history)
+  const recentEmails = [{
     email: data.email,
     webUrl: data.web_url,
     expiresAt: data.expires_at,
+    sha: data.api_key,
     createdAt: new Date().toISOString(),
-  });
-
-  // Keep only the most recent entries
-  if (recentEmails.length > MAX_RECENT) {
-    recentEmails.length = MAX_RECENT;
-  }
+  }];
 
   await chrome.storage.local.set({ recentEmails });
 }
