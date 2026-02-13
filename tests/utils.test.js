@@ -26,19 +26,31 @@ test("formatTimer uses expired label for zero or negative", () => {
 });
 
 test("extractOTP finds context-based code", () => {
-  const label = (code) => `OTP: ${code}`;
-  const result = extractOTP("Your verification code: 123456", label);
-  assert.equal(result, "OTP: 123456");
+  const result = extractOTP("Your verification code: 123456");
+  assert.equal(result.code, "123456");
 });
 
 test("extractOTP falls back to standalone digits", () => {
-  const label = (code) => `OTP: ${code}`;
-  const result = extractOTP("Use 98765 to continue", label);
-  assert.equal(result, "OTP: 98765");
+  const result = extractOTP("Use 98765 to continue");
+  assert.equal(result.code, "98765");
+});
+
+test("extractOTP finds Facebook code format", () => {
+  const result = extractOTP("Your Facebook code is FB-12345.");
+  assert.equal(result.code, "FB-12345");
+});
+
+test("extractOTP finds Google code format", () => {
+  const result = extractOTP("Use G-654321 to verify.");
+  assert.equal(result.code, "G-654321");
+});
+
+test("extractOTP uses first occurrence in the body", () => {
+  const result = extractOTP("Code 1111 appears before FB-22222 and 3333.");
+  assert.equal(result.code, "1111");
 });
 
 test("extractOTP ignores year-like numbers", () => {
-  const label = (code) => `OTP: ${code}`;
-  const result = extractOTP("This was in 2024", label);
+  const result = extractOTP("This was in 2024");
   assert.equal(result, null);
 });

@@ -26,6 +26,7 @@ const STR = {
 let timerInterval = null;
 let pollingInterval = null;
 let currentMailbox = null;
+let lastOtp = null;
 
 function localizePage() {
   document.documentElement.lang = chrome.i18n.getUILanguage();
@@ -252,18 +253,49 @@ function displayMessages(messages) {
 
   messagesContainer.classList.remove("hidden");
   messagesList.innerHTML = "";
+  lastOtp = null;
 
   for (const msg of messages) {
     const li = document.createElement("li");
     li.className = "message-item";
 
-    const otp = extractOTP(msg.body_text || "", (code) => i18n("popup_otp_label", [code]));
+    const otpMatch = extractOTP(msg.body_text || "");
+    if (otpMatch) {
+      lastOtp = otpMatch.code;
+    }
 
     li.innerHTML = `
       <div class="message-from">${escapeHtml(msg.from || STR.unknownSender)}</div>
       <div class="message-subject">${escapeHtml(msg.subject || STR.noSubject)}</div>
-      ${otp ? `<div class="message-otp">${escapeHtml(otp)}</div>` : ""}
+      ${otpMatch ? `<div class="message-otp" data-otp="${escapeHtml(otpMatch.code)}">${escapeHtml(i18n("popup_otp_label", [otpMatch.code]))}</div>` : ""}
     `;
+
+    const otpEl = li.querySelector(".message-otp");
+    if (otpEl) {
+      otpEl.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const otp = otpEl.dataset.otp;
+        if (!otp) return;
+        try {
+          await navigator.clipboard.writeText(otp);
+        } catch (err) {
+          console.error("Failed to copy OTP:", err);
+        }
+      });
+
+      otpEl.addEventListener("contextmenu", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const otp = otpEl.dataset.otp || lastOtp;
+        if (!otp) return;
+        try {
+          await chrome.runtime.sendMessage({ action: "pasteOtp", otp });
+        } catch (err) {
+          console.error("Failed to paste OTP:", err);
+        }
+      });
+    }
 
     li.addEventListener("click", () => {
       const url = `https://tempy.email/?mailbox=${encodeURIComponent(currentMailbox)}`;

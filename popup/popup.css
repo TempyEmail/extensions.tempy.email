@@ -287,6 +287,12 @@ main {
   border-radius: 4px;
   border: 1px solid #ff6b35;
   margin-top: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.message-otp:hover {
+  background: #fff5f0;
 }
 
 /* Footer / Settings */

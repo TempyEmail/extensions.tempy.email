@@ -20,23 +20,30 @@
     return m + ":" + s + " remaining";
   }
 
-  function extractOTP(content, labelFormatter) {
+  function extractOTP(content) {
     const text = content || "";
-    const label = typeof labelFormatter === "function"
-      ? labelFormatter
-      : (code) => "OTP: " + code;
+    const candidates = [];
 
-    const contextMatch = text.match(/(?:code|otp|pin|verification|verify|confirm)[:\s]*(\d{4,8})/i)
-      || text.match(/(\d{4,8})\s*(?:is your|is the)/i);
-
-    if (contextMatch) return label(contextMatch[1]);
-
-    const matches = text.match(/\b(?!20[2-3]\d\b)\d{4,8}\b/g);
-    if (matches && matches.length > 0) {
-      return label(matches[0]);
+    function addMatches(regex, codeFromMatch) {
+      const flags = regex.flags.includes("g") ? regex.flags : regex.flags + "g";
+      const re = new RegExp(regex.source, flags);
+      for (const match of text.matchAll(re)) {
+        const code = codeFromMatch(match);
+        if (!code) continue;
+        candidates.push({ index: match.index || 0, code });
+      }
     }
 
-    return null;
+    addMatches(/\bFB-\d{5}\b/gi, (m) => m[0]);
+    addMatches(/\bG-\d{4,8}\b/gi, (m) => m[0]);
+    addMatches(/(?:code|otp|pin|verification|verify|confirm)[:\s]*(\d{4,8})/gi, (m) => m[1]);
+    addMatches(/(\d{4,8})\s*(?:is your|is the)/gi, (m) => m[1]);
+    addMatches(/\b(?!20[2-3]\d\b)\d{4,8}\b/g, (m) => m[0]);
+
+    if (candidates.length === 0) return null;
+
+    candidates.sort((a, b) => a.index - b.index);
+    return { code: candidates[0].code };
   }
 
   return { getRemaining, formatTimer, extractOTP };

@@ -22,7 +22,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     // Fill the active editable element
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      func: fillActiveElement,
+      func: fillActiveElementWithText,
       args: [data.email],
     });
 
@@ -51,6 +51,10 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg.action === "generateEmail") {
     handleGenerateEmail().then(sendResponse);
     return true; // async response
+  }
+  if (msg.action === "pasteOtp") {
+    handlePasteOtp(msg.otp).then(sendResponse);
+    return true;
   }
   if (msg.action === "getRecentEmails") {
     chrome.storage.local.get("recentEmails").then((r) => {
@@ -123,15 +127,33 @@ async function saveRecentEmail(data) {
   await chrome.storage.local.set({ recentEmails });
 }
 
+async function handlePasteOtp(otp) {
+  if (!otp) return { ok: false, error: "No OTP provided." };
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!tab?.id) return { ok: false, error: "No active tab." };
+
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: fillActiveElementWithText,
+      args: [otp],
+    });
+    return { ok: true };
+  } catch (err) {
+    console.error("[tempy] Failed to paste OTP:", err);
+    return { ok: false, error: err.message };
+  }
+}
+
 // Injected into page context to fill the active element
-function fillActiveElement(email) {
+function fillActiveElementWithText(text) {
   const el = document.activeElement;
   if (!el || (el.tagName !== "INPUT" && el.tagName !== "TEXTAREA" && !el.isContentEditable)) {
     return;
   }
 
   if (el.isContentEditable) {
-    el.textContent = email;
+    el.textContent = text;
     el.dispatchEvent(new Event("input", { bubbles: true }));
     return;
   }
@@ -141,9 +163,9 @@ function fillActiveElement(email) {
     || Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value")?.set;
 
   if (setter) {
-    setter.call(el, email);
+    setter.call(el, text);
   } else {
-    el.value = email;
+    el.value = text;
   }
 
   el.dispatchEvent(new Event("input", { bubbles: true }));
