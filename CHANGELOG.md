@@ -16,7 +16,9 @@ All notable changes to this project are documented below, in commit order.
 - d489b6b: Add inbox message viewer with live polling and OTP extraction.
 - 82d5687: chore: add gitignore.
 - 2a9f698: refactor(api): remove SHA/API key authentication.
+- 6890a28: Add changelog, contributing guide, and tests.
 
 ## 2026-02-14
 
 - e777a90: Add i18n support and locales.
+- pending: Include _locales in release packages; document locales and supported languages.

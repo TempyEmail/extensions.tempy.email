@@ -26,6 +26,21 @@ This extension brings tempy.email directly into your browser so you never have t
 - **Recent history** — keeps track of your last 20 generated addresses with live expiration countdowns
 - **Open inbox** — optionally auto-opens the tempy.email inbox in a new tab so you can watch for incoming mail
 
+## Supported Languages
+
+| Language | Rationale |
+| --- | --- |
+| English | Default — US, UK, India, global tech |
+| Spanish | Latin America + Spain — massive internet growth |
+| Portuguese (Brazil) | Brazil — huge tech-savvy population |
+| German | Germany, Austria, Switzerland — privacy-conscious market |
+| French | France, Belgium, West Africa — large internet user base |
+| Japanese | High internet penetration, privacy-aware culture |
+| Russian | Large internet population, high demand for privacy tools |
+| Korean | Very high internet penetration, tech-forward |
+| Turkish | Large, young, internet-active population |
+| Polish | Strong Central European tech community, privacy-aware (EU/GDPR) |
+
 ## Installation
 
 ### Chrome
@@ -69,6 +84,7 @@ This extension brings tempy.email directly into your browser so you never have t
 ├── content/
 │   ├── content.js             # Email field detection, overlay injection
 │   └── content.css            # Content script styles
+├── _locales/                  # i18n locale strings
 ├── icons/                     # Extension icons (16/32/48/128)
 └── .github/workflows/
     └── release.yml            # CI — pack and release on push

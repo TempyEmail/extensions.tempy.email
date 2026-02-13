@@ -31,7 +31,7 @@ jobs:
           # Copy files for Chrome build
           mkdir -p build-chrome
           cp manifest.json build-chrome/
-          cp -r background popup content icons build-chrome/
+          cp -r background popup content icons _locales build-chrome/
           cd build-chrome && zip -r ../dist/tempy-email-chrome-v${VERSION}.zip . && cd ..
           rm -rf build-chrome
 
@@ -40,7 +40,7 @@ jobs:
           # Copy files for Firefox build
           mkdir -p build-firefox
           cp manifest.firefox.json build-firefox/manifest.json
-          cp -r background popup content icons build-firefox/
+          cp -r background popup content icons _locales build-firefox/
           cd build-firefox && zip -r ../dist/tempy-email-firefox-v${VERSION}.zip . && cd ..
           rm -rf build-firefox
 
