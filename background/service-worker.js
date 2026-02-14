@@ -9,6 +9,8 @@ chrome.runtime.onInstalled.addListener(() => {
     contexts: ["editable"],
     documentUrlPatterns: ["https://*/*", "http://*/*"],
   });
+
+  ensureConsentFlow();
 });
 
 // Context menu click handler
@@ -64,7 +66,8 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   }
   if (msg.action === "getSettings") {
     chrome.storage.local.get("settings").then((r) => {
-      sendResponse(r.settings || { autoDetectInputs: true, openInboxAfterGenerate: false });
+      const defaults = { autoDetectInputs: true, openInboxAfterGenerate: false };
+      sendResponse({ ...defaults, ...(r.settings || {}) });
     });
     return true;
   }
@@ -84,10 +87,14 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 
 async function handleGenerateEmail() {
   try {
+    const { settings } = await chrome.storage.local.get("settings");
+    if (!settings?.dataConsent) {
+      return { ok: false, error: i18n("error_data_consent_required") };
+    }
+
     const data = await createMailbox();
     await saveRecentEmail(data);
 
-    const { settings } = await chrome.storage.local.get("settings");
     if (settings?.openInboxAfterGenerate) {
       chrome.tabs.create({ url: data.web_url, active: false });
     }
@@ -95,6 +102,17 @@ async function handleGenerateEmail() {
     return { ok: true, data };
   } catch (err) {
     return { ok: false, error: err.message };
+  }
+}
+
+async function ensureConsentFlow() {
+  const { settings } = await chrome.storage.local.get("settings");
+  if (settings?.dataConsent !== undefined) return;
+
+  try {
+    await chrome.tabs.create({ url: chrome.runtime.getURL("consent/consent.html") });
+  } catch (err) {
+    console.error("[tempy] Failed to open consent page:", err);
   }
 }
 

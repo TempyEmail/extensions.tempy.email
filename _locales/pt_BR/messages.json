@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Ação necessária"
+  },
+  "popup_consent_required_body": {
+    "message": "Revise e aceite a transmissão de dados para usar o Tempy Email."
+  },
+  "popup_consent_open_button": {
+    "message": "Abrir consentimento"
+  },
   "error_rate_limit": {
     "message": "Limite de requisições atingido. Aguarde um momento e tente novamente."
+  },
+  "error_data_consent_required": {
+    "message": "Aceite a transmissão de dados para usar o Tempy Email."
   },
   "error_api_status": {
     "message": "Erro da API: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Consentimento de transmissão de dados"
+  },
+  "consent_intro": {
+    "message": "Para gerar caixas de entrada descartáveis e mostrar mensagens, esta extensão precisa enviar dados limitados ao tempy.email."
+  },
+  "consent_data_sent_title": {
+    "message": "Dados enviados ao tempy.email"
+  },
+  "consent_data_sent_body": {
+    "message": "Solicitações de criação de caixa e o endereço gerado ao buscar mensagens."
+  },
+  "consent_local_title": {
+    "message": "Armazenado localmente"
+  },
+  "consent_local_body": {
+    "message": "Suas configurações e o endereço gerado mais recente."
+  },
+  "consent_no_collect_title": {
+    "message": "Não coletado"
+  },
+  "consent_no_collect_body": {
+    "message": "Histórico de navegação, termos de busca, análises ou dados de rastreamento."
+  },
+  "consent_accept": {
+    "message": "Aceitar"
+  },
+  "consent_decline": {
+    "message": "Recusar"
+  },
+  "consent_decline_note": {
+    "message": "Se você recusar, a extensão não poderá gerar caixas nem buscar mensagens."
+  },
+  "consent_status_accepted": {
+    "message": "Obrigado! Você pode fechar esta aba."
+  },
+  "consent_status_declined": {
+    "message": "Transmissão de dados desativada. Você pode alterar isso mais tarde reabrindo a página de consentimento."
   }
 }

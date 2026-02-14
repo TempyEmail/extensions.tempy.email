@@ -7,6 +7,8 @@ const settingAutoDetect = document.getElementById("setting-auto-detect");
 const settingAutoOpen = document.getElementById("setting-auto-open");
 const messagesContainer = document.getElementById("messages-container");
 const messagesList = document.getElementById("messages-list");
+const consentBanner = document.getElementById("consent-banner");
+const consentOpenBtn = document.getElementById("consent-open-btn");
 const { getRemaining, formatTimer, extractOTP } = TempyUtils;
 
 const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
@@ -27,6 +29,7 @@ let timerInterval = null;
 let pollingInterval = null;
 let currentMailbox = null;
 let lastOtp = null;
+let hasConsent = false;
 
 function localizePage() {
   document.documentElement.lang = chrome.i18n.getUILanguage();
@@ -43,7 +46,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadSettings();
   await loadRecentEmails();
   startTimerUpdates();
-  startPolling();
+  if (hasConsent) {
+    startPolling();
+  }
 });
 
 // Cleanup on unload
@@ -51,8 +56,27 @@ window.addEventListener("beforeunload", () => {
   if (pollingInterval) clearInterval(pollingInterval);
 });
 
+chrome.storage.onChanged.addListener((changes) => {
+  if (!changes.settings) return;
+  const next = changes.settings.newValue || {};
+  const consentNow = next.dataConsent === true;
+  if (consentNow === hasConsent) return;
+  hasConsent = consentNow;
+  updateConsentUI();
+  if (hasConsent) {
+    startPolling();
+  } else if (pollingInterval) {
+    clearInterval(pollingInterval);
+    pollingInterval = null;
+  }
+});
+
 // Generate button
 generateBtn.addEventListener("click", async () => {
+  if (!hasConsent) {
+    openConsentPage();
+    return;
+  }
   generateBtn.disabled = true;
   generateBtn.innerHTML = '<span class="spinner"></span>';
   hideError();
@@ -85,17 +109,22 @@ clearBtn.addEventListener("click", async () => {
 // Settings
 settingAutoDetect.addEventListener("change", saveSettings);
 settingAutoOpen.addEventListener("change", saveSettings);
+consentOpenBtn.addEventListener("click", openConsentPage);
 
 async function loadSettings() {
   const settings = await chrome.runtime.sendMessage({ action: "getSettings" });
   settingAutoDetect.checked = settings.autoDetectInputs !== false;
   settingAutoOpen.checked = settings.openInboxAfterGenerate === true;
+  hasConsent = settings.dataConsent === true;
+  updateConsentUI();
 }
 
 async function saveSettings() {
+  const existing = await chrome.runtime.sendMessage({ action: "getSettings" });
   await chrome.runtime.sendMessage({
     action: "saveSettings",
     settings: {
+      ...existing,
       autoDetectInputs: settingAutoDetect.checked,
       openInboxAfterGenerate: settingAutoOpen.checked,
     },
@@ -205,6 +234,20 @@ function showError(msg) {
 
 function hideError() {
   errorBanner.classList.add("hidden");
+}
+
+function updateConsentUI() {
+  if (hasConsent) {
+    consentBanner.classList.add("hidden");
+    generateBtn.disabled = false;
+    return;
+  }
+  consentBanner.classList.remove("hidden");
+  generateBtn.disabled = true;
+}
+
+function openConsentPage() {
+  chrome.tabs.create({ url: chrome.runtime.getURL("consent/consent.html") });
 }
 
 function escapeHtml(str) {

@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Acción requerida"
+  },
+  "popup_consent_required_body": {
+    "message": "Revisa y acepta la transmisión de datos para usar Tempy Email."
+  },
+  "popup_consent_open_button": {
+    "message": "Abrir consentimiento"
+  },
   "error_rate_limit": {
     "message": "Se alcanzó el límite de solicitudes. Espera un momento y vuelve a intentarlo."
+  },
+  "error_data_consent_required": {
+    "message": "Acepta la transmisión de datos para usar Tempy Email."
   },
   "error_api_status": {
     "message": "Error de la API: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Consentimiento de transmisión de datos"
+  },
+  "consent_intro": {
+    "message": "Para generar bandejas desechables y mostrar mensajes, esta extensión necesita enviar datos limitados a tempy.email."
+  },
+  "consent_data_sent_title": {
+    "message": "Datos enviados a tempy.email"
+  },
+  "consent_data_sent_body": {
+    "message": "Solicitudes de creación de buzón y la dirección generada al obtener mensajes."
+  },
+  "consent_local_title": {
+    "message": "Almacenado localmente"
+  },
+  "consent_local_body": {
+    "message": "Tu configuración y la dirección generada más reciente."
+  },
+  "consent_no_collect_title": {
+    "message": "No se recopila"
+  },
+  "consent_no_collect_body": {
+    "message": "Historial de navegación, términos de búsqueda, analíticas o datos de seguimiento."
+  },
+  "consent_accept": {
+    "message": "Aceptar"
+  },
+  "consent_decline": {
+    "message": "Rechazar"
+  },
+  "consent_decline_note": {
+    "message": "Si rechazas, la extensión no puede generar buzones ni obtener mensajes."
+  },
+  "consent_status_accepted": {
+    "message": "¡Gracias! Puedes cerrar esta pestaña."
+  },
+  "consent_status_declined": {
+    "message": "Transmisión de datos desactivada. Puedes cambiarlo más tarde reabriendo la página de consentimiento."
   }
 }

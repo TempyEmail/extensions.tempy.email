@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "対応が必要です"
+  },
+  "popup_consent_required_body": {
+    "message": "Tempy Email を利用するには、データ送信に同意してください。"
+  },
+  "popup_consent_open_button": {
+    "message": "同意を開く"
+  },
   "error_rate_limit": {
     "message": "リクエストが多すぎます。少し待ってから再試行してください。"
+  },
+  "error_data_consent_required": {
+    "message": "Tempy Email を利用するにはデータ送信に同意してください。"
   },
   "error_api_status": {
     "message": "API エラー: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "データ送信の同意"
+  },
+  "consent_intro": {
+    "message": "使い捨て受信箱を生成しメッセージを表示するため、この拡張機能は tempy.email に限定的なデータを送信します。"
+  },
+  "consent_data_sent_title": {
+    "message": "tempy.email に送信されるデータ"
+  },
+  "consent_data_sent_body": {
+    "message": "受信箱の作成リクエストと、メッセージ取得時の生成されたアドレス。"
+  },
+  "consent_local_title": {
+    "message": "ローカルに保存"
+  },
+  "consent_local_body": {
+    "message": "設定と直近に生成したアドレス。"
+  },
+  "consent_no_collect_title": {
+    "message": "収集しない情報"
+  },
+  "consent_no_collect_body": {
+    "message": "閲覧履歴、検索語、分析データ、追跡データ。"
+  },
+  "consent_accept": {
+    "message": "同意する"
+  },
+  "consent_decline": {
+    "message": "同意しない"
+  },
+  "consent_decline_note": {
+    "message": "同意しない場合、拡張機能は受信箱の生成やメッセージ取得ができません。"
+  },
+  "consent_status_accepted": {
+    "message": "ありがとうございます。タブを閉じてください。"
+  },
+  "consent_status_declined": {
+    "message": "データ送信は無効になりました。後で同意ページを開いて変更できます。"
   }
 }

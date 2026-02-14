@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="consent.css">
+  <title>Tempy Email Consent</title>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="../icons/icon-32.png" alt="tempy.email" class="logo">
+      <span class="brand">tempy.email</span>
+    </header>
+
+    <h1 data-i18n="consent_title">Data transmission consent</h1>
+    <p class="intro" data-i18n="consent_intro">
+      To generate disposable inboxes and show messages, this extension needs to send limited data to tempy.email.
+    </p>
+
+    <ul class="summary">
+      <li>
+        <strong data-i18n="consent_data_sent_title">Data sent to tempy.email</strong>
+        <span data-i18n="consent_data_sent_body">Mailbox creation requests and the generated mailbox address when fetching messages.</span>
+      </li>
+      <li>
+        <strong data-i18n="consent_local_title">Stored locally</strong>
+        <span data-i18n="consent_local_body">Your settings and most recent generated address.</span>
+      </li>
+      <li>
+        <strong data-i18n="consent_no_collect_title">Not collected</strong>
+        <span data-i18n="consent_no_collect_body">Browsing history, search terms, analytics, or tracking data.</span>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <button id="accept-btn" class="btn primary" data-i18n="consent_accept">Accept</button>
+      <button id="decline-btn" class="btn" data-i18n="consent_decline">Decline</button>
+    </div>
+
+    <p id="status" class="status" data-i18n="consent_decline_note">
+      If you decline, the extension cannot generate inboxes or fetch messages.
+    </p>
+  </div>
+
+  <script src="consent.js"></script>
+</body>
+</html>

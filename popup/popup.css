@@ -91,6 +91,39 @@ header {
   border-bottom: 1px solid #fdd;
 }
 
+.consent-banner {
+  padding: 12px 16px;
+  background: #fff7e6;
+  color: #7a4a00;
+  border-bottom: 1px solid #f2d7b6;
+}
+
+.consent-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.consent-body {
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.consent-btn {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.consent-btn:hover {
+  background: #ff8c42;
+}
+
 .hidden {
   display: none;
 }

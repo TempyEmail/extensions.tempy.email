@@ -25,3 +25,4 @@ All notable changes to this project are documented below, in commit order.
 - pending: Improve OTP detection and add click-to-copy/right-click paste.
 - pending: Add privacy policy and AMO listing disclosure.
 - pending: Declare data collection permissions for AMO.
+- pending: Add data consent flow and disclosure UI.

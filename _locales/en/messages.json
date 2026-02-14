@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Action required"
+  },
+  "popup_consent_required_body": {
+    "message": "Please review and accept data transmission to use Tempy Email."
+  },
+  "popup_consent_open_button": {
+    "message": "Open consent"
+  },
   "error_rate_limit": {
     "message": "Rate limit reached. Please wait a moment and try again."
+  },
+  "error_data_consent_required": {
+    "message": "Please accept data transmission to use Tempy Email."
   },
   "error_api_status": {
     "message": "API error: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Data transmission consent"
+  },
+  "consent_intro": {
+    "message": "To generate disposable inboxes and show messages, this extension needs to send limited data to tempy.email."
+  },
+  "consent_data_sent_title": {
+    "message": "Data sent to tempy.email"
+  },
+  "consent_data_sent_body": {
+    "message": "Mailbox creation requests and the generated mailbox address when fetching messages."
+  },
+  "consent_local_title": {
+    "message": "Stored locally"
+  },
+  "consent_local_body": {
+    "message": "Your settings and most recent generated address."
+  },
+  "consent_no_collect_title": {
+    "message": "Not collected"
+  },
+  "consent_no_collect_body": {
+    "message": "Browsing history, search terms, analytics, or tracking data."
+  },
+  "consent_accept": {
+    "message": "Accept"
+  },
+  "consent_decline": {
+    "message": "Decline"
+  },
+  "consent_decline_note": {
+    "message": "If you decline, the extension cannot generate inboxes or fetch messages."
+  },
+  "consent_status_accepted": {
+    "message": "Thanks! You can close this tab."
+  },
+  "consent_status_declined": {
+    "message": "Data transmission disabled. You can change this later by reopening the consent page."
   }
 }

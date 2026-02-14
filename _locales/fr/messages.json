@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Action requise"
+  },
+  "popup_consent_required_body": {
+    "message": "Veuillez examiner et accepter la transmission de données pour utiliser Tempy Email."
+  },
+  "popup_consent_open_button": {
+    "message": "Ouvrir le consentement"
+  },
   "error_rate_limit": {
     "message": "Limite atteinte. Veuillez patienter un moment puis réessayer."
+  },
+  "error_data_consent_required": {
+    "message": "Veuillez accepter la transmission de données pour utiliser Tempy Email."
   },
   "error_api_status": {
     "message": "Erreur API: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Consentement à la transmission de données"
+  },
+  "consent_intro": {
+    "message": "Pour générer des boîtes jetables et afficher les messages, cette extension doit envoyer des données limitées à tempy.email."
+  },
+  "consent_data_sent_title": {
+    "message": "Données envoyées à tempy.email"
+  },
+  "consent_data_sent_body": {
+    "message": "Demandes de création de boîte et adresse générée lors de la récupération des messages."
+  },
+  "consent_local_title": {
+    "message": "Stocké localement"
+  },
+  "consent_local_body": {
+    "message": "Vos paramètres et la dernière adresse générée."
+  },
+  "consent_no_collect_title": {
+    "message": "Non collecté"
+  },
+  "consent_no_collect_body": {
+    "message": "Historique de navigation, termes de recherche, analyses ou données de suivi."
+  },
+  "consent_accept": {
+    "message": "Accepter"
+  },
+  "consent_decline": {
+    "message": "Refuser"
+  },
+  "consent_decline_note": {
+    "message": "Si vous refusez, l’extension ne peut pas générer de boîtes ni récupérer les messages."
+  },
+  "consent_status_accepted": {
+    "message": "Merci ! Vous pouvez fermer cet onglet."
+  },
+  "consent_status_declined": {
+    "message": "Transmission de données désactivée. Vous pouvez changer cela plus tard en rouvrant la page de consentement."
   }
 }

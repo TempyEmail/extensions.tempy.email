@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Требуется действие"
+  },
+  "popup_consent_required_body": {
+    "message": "Пожалуйста, ознакомьтесь и согласитесь на передачу данных, чтобы использовать Tempy Email."
+  },
+  "popup_consent_open_button": {
+    "message": "Открыть согласие"
+  },
   "error_rate_limit": {
     "message": "Достигнут лимит запросов. Подождите немного и попробуйте снова."
+  },
+  "error_data_consent_required": {
+    "message": "Пожалуйста, согласитесь на передачу данных, чтобы использовать Tempy Email."
   },
   "error_api_status": {
     "message": "Ошибка API: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Согласие на передачу данных"
+  },
+  "consent_intro": {
+    "message": "Чтобы создавать одноразовые ящики и показывать сообщения, это расширение должно отправлять ограниченные данные на tempy.email."
+  },
+  "consent_data_sent_title": {
+    "message": "Данные, отправляемые на tempy.email"
+  },
+  "consent_data_sent_body": {
+    "message": "Запросы на создание ящика и созданный адрес при получении сообщений."
+  },
+  "consent_local_title": {
+    "message": "Хранится локально"
+  },
+  "consent_local_body": {
+    "message": "Ваши настройки и последний созданный адрес."
+  },
+  "consent_no_collect_title": {
+    "message": "Не собирается"
+  },
+  "consent_no_collect_body": {
+    "message": "История просмотров, поисковые запросы, аналитика или данные отслеживания."
+  },
+  "consent_accept": {
+    "message": "Принять"
+  },
+  "consent_decline": {
+    "message": "Отклонить"
+  },
+  "consent_decline_note": {
+    "message": "Если вы отклоните, расширение не сможет создавать ящики или получать сообщения."
+  },
+  "consent_status_accepted": {
+    "message": "Спасибо! Вы можете закрыть эту вкладку."
+  },
+  "consent_status_declined": {
+    "message": "Передача данных отключена. Вы можете изменить это позже, открыв страницу согласия."
   }
 }

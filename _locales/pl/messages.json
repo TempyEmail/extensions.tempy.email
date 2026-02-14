@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Wymagane działanie"
+  },
+  "popup_consent_required_body": {
+    "message": "Aby używać Tempy Email, zapoznaj się i zaakceptuj przesyłanie danych."
+  },
+  "popup_consent_open_button": {
+    "message": "Otwórz zgodę"
+  },
   "error_rate_limit": {
     "message": "Osiągnięto limit żądań. Poczekaj chwilę i spróbuj ponownie."
+  },
+  "error_data_consent_required": {
+    "message": "Aby używać Tempy Email, zaakceptuj przesyłanie danych."
   },
   "error_api_status": {
     "message": "Błąd API: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Zgoda na przesyłanie danych"
+  },
+  "consent_intro": {
+    "message": "Aby tworzyć jednorazowe skrzynki i wyświetlać wiadomości, to rozszerzenie musi wysyłać ograniczone dane do tempy.email."
+  },
+  "consent_data_sent_title": {
+    "message": "Dane wysyłane do tempy.email"
+  },
+  "consent_data_sent_body": {
+    "message": "Żądania utworzenia skrzynki i wygenerowany adres podczas pobierania wiadomości."
+  },
+  "consent_local_title": {
+    "message": "Przechowywane lokalnie"
+  },
+  "consent_local_body": {
+    "message": "Twoje ustawienia i ostatnio wygenerowany adres."
+  },
+  "consent_no_collect_title": {
+    "message": "Nie zbieramy"
+  },
+  "consent_no_collect_body": {
+    "message": "Historia przeglądania, wyszukiwane hasła, analityka lub dane śledzące."
+  },
+  "consent_accept": {
+    "message": "Akceptuj"
+  },
+  "consent_decline": {
+    "message": "Odrzuć"
+  },
+  "consent_decline_note": {
+    "message": "Jeśli odrzucisz, rozszerzenie nie będzie mogło tworzyć skrzynek ani pobierać wiadomości."
+  },
+  "consent_status_accepted": {
+    "message": "Dziękujemy! Możesz zamknąć tę kartę."
+  },
+  "consent_status_declined": {
+    "message": "Przesyłanie danych wyłączone. Możesz to zmienić później, ponownie otwierając stronę zgody."
   }
 }

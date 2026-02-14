@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Eylem gerekli"
+  },
+  "popup_consent_required_body": {
+    "message": "Tempy Email'i kullanmak için veri aktarımını inceleyip kabul edin."
+  },
+  "popup_consent_open_button": {
+    "message": "Onayı aç"
+  },
   "error_rate_limit": {
     "message": "İstek sınırına ulaşıldı. Lütfen biraz bekleyip tekrar deneyin."
+  },
+  "error_data_consent_required": {
+    "message": "Tempy Email'i kullanmak için veri aktarımını kabul edin."
   },
   "error_api_status": {
     "message": "API hatası: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Veri aktarımı onayı"
+  },
+  "consent_intro": {
+    "message": "Geçici gelen kutuları oluşturmak ve mesajları göstermek için bu uzantı tempy.email'e sınırlı veri göndermelidir."
+  },
+  "consent_data_sent_title": {
+    "message": "tempy.email'e gönderilen veriler"
+  },
+  "consent_data_sent_body": {
+    "message": "Gelen kutusu oluşturma istekleri ve mesajları getirirken oluşturulan adres."
+  },
+  "consent_local_title": {
+    "message": "Yerel olarak saklanır"
+  },
+  "consent_local_body": {
+    "message": "Ayarlarınız ve en son oluşturulan adres."
+  },
+  "consent_no_collect_title": {
+    "message": "Toplanmaz"
+  },
+  "consent_no_collect_body": {
+    "message": "Gezinme geçmişi, arama terimleri, analizler veya izleme verileri."
+  },
+  "consent_accept": {
+    "message": "Kabul et"
+  },
+  "consent_decline": {
+    "message": "Reddet"
+  },
+  "consent_decline_note": {
+    "message": "Reddederseniz uzantı gelen kutusu oluşturamaz veya mesajları getiremez."
+  },
+  "consent_status_accepted": {
+    "message": "Teşekkürler! Bu sekmeyi kapatabilirsiniz."
+  },
+  "consent_status_declined": {
+    "message": "Veri aktarımı devre dışı. Onay sayfasını tekrar açarak daha sonra değiştirebilirsiniz."
   }
 }

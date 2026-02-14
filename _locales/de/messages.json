@@ -78,8 +78,20 @@
       }
     }
   },
+  "popup_consent_required_title": {
+    "message": "Aktion erforderlich"
+  },
+  "popup_consent_required_body": {
+    "message": "Bitte überprüfe und akzeptiere die Datenübertragung, um Tempy Email zu nutzen."
+  },
+  "popup_consent_open_button": {
+    "message": "Zustimmung öffnen"
+  },
   "error_rate_limit": {
     "message": "Anfragelimit erreicht. Bitte kurz warten und erneut versuchen."
+  },
+  "error_data_consent_required": {
+    "message": "Bitte akzeptiere die Datenübertragung, um Tempy Email zu nutzen."
   },
   "error_api_status": {
     "message": "API-Fehler: $STATUS$",
@@ -88,5 +100,44 @@
         "content": "$1"
       }
     }
+  },
+  "consent_title": {
+    "message": "Einwilligung zur Datenübertragung"
+  },
+  "consent_intro": {
+    "message": "Um Wegwerf-Postfächer zu erstellen und Nachrichten anzuzeigen, muss diese Erweiterung begrenzte Daten an tempy.email senden."
+  },
+  "consent_data_sent_title": {
+    "message": "An tempy.email gesendete Daten"
+  },
+  "consent_data_sent_body": {
+    "message": "Anfragen zur Postfacherstellung und die erzeugte Adresse beim Abrufen von Nachrichten."
+  },
+  "consent_local_title": {
+    "message": "Lokal gespeichert"
+  },
+  "consent_local_body": {
+    "message": "Deine Einstellungen und die zuletzt erzeugte Adresse."
+  },
+  "consent_no_collect_title": {
+    "message": "Nicht erfasst"
+  },
+  "consent_no_collect_body": {
+    "message": "Browserverlauf, Suchbegriffe, Analysen oder Trackingdaten."
+  },
+  "consent_accept": {
+    "message": "Akzeptieren"
+  },
+  "consent_decline": {
+    "message": "Ablehnen"
+  },
+  "consent_decline_note": {
+    "message": "Wenn du ablehnst, kann die Erweiterung keine Postfächer erstellen oder Nachrichten abrufen."
+  },
+  "consent_status_accepted": {
+    "message": "Danke! Du kannst diesen Tab schließen."
+  },
+  "consent_status_declined": {
+    "message": "Datenübertragung deaktiviert. Du kannst dies später ändern, indem du die Einwilligungsseite erneut öffnest."
   }
 }
