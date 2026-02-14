@@ -19,6 +19,9 @@ jobs:
           node-version: 22
       - name: Run unit tests
         run: node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml
+      - name: Fix junit XML
+        if: always()
+        run: sed -i 's|<testsuites>|<testsuites><testsuite name="unit tests">|;s|</testsuites>|</testsuite></testsuites>|' test-results.xml
       - name: Publish test results
         uses: dorny/test-reporter@v1
         if: always()
