@@ -65,6 +65,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set version
         run: |
@@ -97,6 +99,39 @@ jobs:
           cd build-firefox && zip -r ../dist/tempy-email-firefox-v${VERSION}.zip . && cd ..
           rm -rf build-firefox
 
+      - name: Generate changelog
+        run: |
+          PREV_TAG=$(git tag --sort=-v:refname | head -1)
+          if [ -z "$PREV_TAG" ]; then
+            RANGE="HEAD"
+          else
+            RANGE="${PREV_TAG}..HEAD"
+          fi
+
+          FEATURES=$(git log "$RANGE" --pretty=format:'%s' | grep -E '^feat' | sed 's/^/- /' || true)
+          FIXES=$(git log "$RANGE" --pretty=format:'%s' | grep -E '^fix' | sed 's/^/- /' || true)
+          OTHER=$(git log "$RANGE" --pretty=format:'%s' | grep -vE '^(feat|fix)' | sed 's/^/- /' || true)
+
+          {
+            echo "CHANGELOG<<CHANGES_EOF"
+            if [ -n "$FEATURES" ]; then
+              echo "### Features"
+              echo "$FEATURES"
+              echo ""
+            fi
+            if [ -n "$FIXES" ]; then
+              echo "### Fixes"
+              echo "$FIXES"
+              echo ""
+            fi
+            if [ -n "$OTHER" ]; then
+              echo "### Other"
+              echo "$OTHER"
+              echo ""
+            fi
+            echo "CHANGES_EOF"
+          } >> $GITHUB_ENV
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -104,6 +139,8 @@ jobs:
           name: v${{ env.VERSION }}
           body: |
             ## Tempy Email Browser Extension v${{ env.VERSION }}
+
+            ${{ env.CHANGELOG }}
 
             ### Downloads
             - **Chrome**: `tempy-email-chrome-v${{ env.VERSION }}.zip` — Load via `chrome://extensions` (Developer mode → Load unpacked)
