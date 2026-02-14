@@ -84,9 +84,8 @@
     }
   }
 
-  function createIconSvg() {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(ICON_SVG, "image/svg+xml");
+  function parseSvg(svgString) {
+    const doc = new DOMParser().parseFromString(svgString, "image/svg+xml");
     return doc.documentElement;
   }
 
@@ -157,7 +156,7 @@
     const generateTitle = i18n("generate_tempy_email");
     btn.title = generateTitle;
     btn.setAttribute("aria-label", generateTitle);
-    btn.appendChild(createIconSvg());
+    btn.appendChild(parseSvg(ICON_SVG));
 
     container.appendChild(btn);
     shadow.append(style, container);
@@ -170,14 +169,14 @@
       const newTitle = i18n("content_new_email");
       trashBtn.title = newTitle;
       trashBtn.setAttribute("aria-label", newTitle);
-      trashBtn.innerHTML = TRASH_SVG;
+      trashBtn.appendChild(parseSvg(TRASH_SVG));
 
       const openBtn = document.createElement("button");
       openBtn.className = "tempy-btn tempy-open";
       const openTitle = i18n("content_open_inbox");
       openBtn.title = openTitle;
       openBtn.setAttribute("aria-label", openTitle);
-      openBtn.innerHTML = OPEN_SVG;
+      openBtn.appendChild(parseSvg(OPEN_SVG));
 
       trashBtn.addEventListener("click", async (e) => {
         e.preventDefault();
