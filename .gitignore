@@ -1,3 +1,7 @@
 .idea
 ideas
 test-results.xml
+integration-results.xml
+test-results/
+playwright-report/
+node_modules/

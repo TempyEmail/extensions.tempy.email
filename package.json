@@ -4,6 +4,10 @@
   "private": true,
   "description": "Browser extension for tempy.email — instant disposable email addresses",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "test:integration": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0"
   }
 }
