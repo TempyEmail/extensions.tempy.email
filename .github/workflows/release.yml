@@ -1,14 +1,35 @@
-name: Pack and Release
+name: Test, Pack and Release
 
 on:
   push:
     branches: [main]
+  pull_request:
 
 permissions:
   contents: write
+  checks: write
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run unit tests
+        run: node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.xml
+          reporter: java-junit
+
   release:
+    needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +49,6 @@ jobs:
       - name: Pack Chrome extension
         run: |
           mkdir -p dist
-          # Copy files for Chrome build
           mkdir -p build-chrome
           cp manifest.json build-chrome/
           cp -r background popup content icons _locales consent build-chrome/
@@ -38,7 +58,6 @@ jobs:
 
       - name: Pack Firefox extension
         run: |
-          # Copy files for Firefox build
           mkdir -p build-firefox
           cp manifest.firefox.json build-firefox/manifest.json
           cp -r background popup content icons _locales consent build-firefox/
