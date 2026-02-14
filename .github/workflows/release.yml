@@ -32,6 +32,7 @@ jobs:
           mkdir -p build-chrome
           cp manifest.json build-chrome/
           cp -r background popup content icons _locales consent build-chrome/
+          rm -f build-chrome/icons/convert-svg.html build-chrome/icons/convert.js build-chrome/icons/logo.svg
           cd build-chrome && zip -r ../dist/tempy-email-chrome-v${VERSION}.zip . && cd ..
           rm -rf build-chrome
 
@@ -41,6 +42,7 @@ jobs:
           mkdir -p build-firefox
           cp manifest.firefox.json build-firefox/manifest.json
           cp -r background popup content icons _locales consent build-firefox/
+          rm -f build-firefox/icons/convert-svg.html build-firefox/icons/convert.js build-firefox/icons/logo.svg
           cd build-firefox && zip -r ../dist/tempy-email-firefox-v${VERSION}.zip . && cd ..
           rm -rf build-firefox
 
