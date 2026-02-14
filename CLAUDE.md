@@ -6,55 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Browser extension (Chrome/Firefox MV3) for tempy.email disposable email service. Pure vanilla JavaScript — no build tools, frameworks, or dependencies. Files are packaged directly from source.
 
-## Development Commands
+## Development
 
-### Git Commit Style
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, testing, commit style, and release process.
 
-Use [Conventional Commits](https://www.conventionalcommits.org/) format:
-
-```
-<type>(<scope>): <description>
-```
-
-**Types:**
-- `feat` — new feature
-- `fix` — bug fix
-- `refactor` — code change that neither fixes a bug nor adds a feature
-- `chore` — maintenance tasks (dependencies, config, tooling)
-- `docs` — documentation only
-- `style` — formatting, white-space (not CSS)
-- `perf` — performance improvement
-- `test` — adding or updating tests
-
-**Examples:**
-- `feat(popup): add OTP extraction from messages`
-- `fix(content): overlay positioning on scroll`
-- `refactor(api): simplify message polling logic`
-- `chore(deps): update manifest version`
-- `docs(readme): add Firefox installation steps`
-
-### Testing locally
-
-**Chrome:**
-1. Open `chrome://extensions`
-2. Enable "Developer mode"
-3. Click "Load unpacked" and select the repository root
-
-**Firefox:**
-1. Open `about:debugging#/runtime/this-firefox`
-2. Click "Load Temporary Add-on"
-3. Select `manifest.firefox.json`
-
-### Releasing
-
-Automated via GitHub Actions on push to `main`:
-- Version format: `{major}.{minor}.{run_number}` (e.g., `1.0.42`)
-- Major/minor are read from `package.json` version field
-- Build number comes from `github.run_number`
-- Both `manifest.json` and `manifest.firefox.json` are updated with the new version
-- Creates GitHub release with separate Chrome and Firefox zip packages
-
-No manual build or release commands — just push to `main`.
+**Key rules:** Conventional Commits, no runtime dependencies, both manifests in sync, tests required for features/fixes.
 
 ## Architecture
 
@@ -178,7 +134,4 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 ## Important Constraints
 
-- **No build step** — edit source directly, reload extension to test
-- **No external dependencies** — vanilla JS only
-- **Manifest sync** — changes to permissions/icons/scripts must be applied to BOTH manifest files
 - **Storage limit** — currently only stores latest email (array of 1), expandable to 20 if history feature is added
