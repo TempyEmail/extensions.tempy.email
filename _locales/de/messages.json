@@ -11,6 +11,12 @@
   "generate_tempy_email": {
     "message": "Tempy Email erstellen"
   },
+  "content_new_email": {
+    "message": "Neue Adresse"
+  },
+  "content_open_inbox": {
+    "message": "Postfach öffnen"
+  },
   "popup_generate": {
     "message": "Erstellen"
   },

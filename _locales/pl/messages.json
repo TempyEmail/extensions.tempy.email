@@ -11,6 +11,12 @@
   "generate_tempy_email": {
     "message": "Generuj Tempy Email"
   },
+  "content_new_email": {
+    "message": "Nowy adres"
+  },
+  "content_open_inbox": {
+    "message": "Otwórz skrzynkę"
+  },
   "popup_generate": {
     "message": "Generuj"
   },

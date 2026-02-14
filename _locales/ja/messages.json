@@ -11,6 +11,12 @@
   "generate_tempy_email": {
     "message": "Tempy Email を生成"
   },
+  "content_new_email": {
+    "message": "新しいアドレス"
+  },
+  "content_open_inbox": {
+    "message": "受信箱を開く"
+  },
   "popup_generate": {
     "message": "生成"
   },

@@ -11,6 +11,12 @@
   "generate_tempy_email": {
     "message": "Generar Tempy Email"
   },
+  "content_new_email": {
+    "message": "Nueva dirección"
+  },
+  "content_open_inbox": {
+    "message": "Abrir bandeja"
+  },
   "popup_generate": {
     "message": "Generar"
   },

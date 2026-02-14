@@ -11,6 +11,12 @@
   "generate_tempy_email": {
     "message": "Tempy Email 생성"
   },
+  "content_new_email": {
+    "message": "새 주소"
+  },
+  "content_open_inbox": {
+    "message": "받은편지함 열기"
+  },
   "popup_generate": {
     "message": "생성"
   },

@@ -11,6 +11,12 @@
   "generate_tempy_email": {
     "message": "Tempy Email oluştur"
   },
+  "content_new_email": {
+    "message": "Yeni adres"
+  },
+  "content_open_inbox": {
+    "message": "Gelen kutusunu aç"
+  },
   "popup_generate": {
     "message": "Oluştur"
   },
