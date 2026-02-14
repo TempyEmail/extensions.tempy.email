@@ -21,7 +21,11 @@ jobs:
         run: node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml
       - name: Fix junit XML
         if: always()
-        run: sed -i 's|<testsuites>|<testsuites><testsuite name="unit tests">|;s|</testsuites>|</testsuite></testsuites>|' test-results.xml
+        run: |
+          TESTS=$(grep -c '<testcase ' test-results.xml)
+          DURATION=$(grep -oP 'duration_ms \K[\d.]+' test-results.xml)
+          TIME=$(node -e "console.log(($DURATION / 1000).toFixed(3))")
+          sed -i "s|<testsuites>|<testsuites><testsuite name=\"unit tests\" tests=\"$TESTS\" time=\"$TIME\">|;s|</testsuites>|</testsuite></testsuites>|" test-results.xml
       - name: Publish test results
         uses: dorny/test-reporter@v1
         if: always()
