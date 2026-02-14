@@ -26,3 +26,4 @@ All notable changes to this project are documented below, in commit order.
 - pending: Add privacy policy and AMO listing disclosure.
 - pending: Declare data collection permissions for AMO.
 - pending: Add data consent flow and disclosure UI.
+- pending: Remove innerHTML usage for AMO validation.

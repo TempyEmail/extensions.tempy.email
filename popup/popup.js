@@ -30,6 +30,69 @@ let pollingInterval = null;
 let currentMailbox = null;
 let lastOtp = null;
 let hasConsent = false;
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function clearChildren(el) {
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
+  }
+}
+
+function setGenerateButtonLoading(isLoading) {
+  if (isLoading) {
+    generateBtn.disabled = true;
+    clearChildren(generateBtn);
+    const spinner = document.createElement("span");
+    spinner.className = "spinner";
+    generateBtn.appendChild(spinner);
+    return;
+  }
+  generateBtn.disabled = false;
+  generateBtn.textContent = STR.generate;
+}
+
+function createSvgNewTab() {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("width", "14");
+  svg.setAttribute("height", "14");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "1.5");
+  svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round");
+
+  const p1 = document.createElementNS(SVG_NS, "path");
+  p1.setAttribute("d", "M14 8.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.5");
+  const p2 = document.createElementNS(SVG_NS, "path");
+  p2.setAttribute("d", "M10 2h4v4");
+  const p3 = document.createElementNS(SVG_NS, "path");
+  p3.setAttribute("d", "M7 9L14 2");
+  svg.append(p1, p2, p3);
+  return svg;
+}
+
+function createSvgOpenWeb() {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("width", "12");
+  svg.setAttribute("height", "12");
+  svg.setAttribute("viewBox", "0 0 12 12");
+  svg.setAttribute("fill", "none");
+  const path = document.createElementNS(SVG_NS, "path");
+  path.setAttribute("d", "M10 10H2V2H6V1H2C1.45 1 1 1.45 1 2V10C1 10.55 1.45 11 2 11H10C10.55 11 11 10.55 11 10V6H10V10ZM7 1V2H9.59L3.76 7.83L4.46 8.53L10.29 2.71V5.29H11.29V1H7Z");
+  path.setAttribute("fill", "currentColor");
+  svg.append(path);
+  return svg;
+}
+
+function createIconButton(className, title, ariaLabel, svgEl) {
+  const btn = document.createElement("button");
+  btn.className = className;
+  if (title) btn.title = title;
+  if (ariaLabel) btn.setAttribute("aria-label", ariaLabel);
+  if (svgEl) btn.appendChild(svgEl);
+  return btn;
+}
 
 function localizePage() {
   document.documentElement.lang = chrome.i18n.getUILanguage();
@@ -77,8 +140,7 @@ generateBtn.addEventListener("click", async () => {
     openConsentPage();
     return;
   }
-  generateBtn.disabled = true;
-  generateBtn.innerHTML = '<span class="spinner"></span>';
+  setGenerateButtonLoading(true);
   hideError();
 
   try {
@@ -95,8 +157,7 @@ generateBtn.addEventListener("click", async () => {
   } catch (err) {
     showError(err.message);
   } finally {
-    generateBtn.disabled = false;
-    generateBtn.textContent = STR.generate;
+    setGenerateButtonLoading(false);
   }
 });
 
@@ -136,14 +197,14 @@ async function loadRecentEmails() {
 
   if (!emails || emails.length === 0) {
     emptyState.classList.remove("hidden");
-    emailList.innerHTML = "";
+    clearChildren(emailList);
     messagesContainer.classList.add("hidden");
     currentMailbox = null;
     return;
   }
 
   emptyState.classList.add("hidden");
-  emailList.innerHTML = "";
+  clearChildren(emailList);
 
   // Store current mailbox info for polling
   if (emails[0]) {
@@ -158,32 +219,54 @@ async function loadRecentEmails() {
 
     const remaining = getRemaining(entry.expiresAt);
 
-    li.innerHTML = `
-      <div class="email-row">
-        <div class="email-address">${escapeHtml(entry.email)}</div>
-        <button class="btn-icon btn-newtab" data-url="${escapeHtml(entry.webUrl)}" title="${escapeHtml(STR.openInboxNewTabTitle)}" aria-label="${escapeHtml(STR.openInboxNewTabTitle)}">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 8.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.5"/>
-            <path d="M10 2h4v4"/>
-            <path d="M7 9L14 2"/>
-          </svg>
-        </button>
-      </div>
-      <div class="email-meta">
-        <span class="email-timer ${remaining > 0 ? "active" : "expired"}">
-          ${formatTimer(remaining, (m, s) => i18n("popup_timer_remaining", [String(m), s]), STR.timerExpired)}
-        </span>
-        <div class="email-actions">
-          <button class="btn-sm btn-copy" data-email="${escapeHtml(entry.email)}">${escapeHtml(STR.copy)}</button>
-          <button class="btn-sm btn-open" data-url="${escapeHtml(entry.webUrl)}">${escapeHtml(STR.openInbox)}</button>
-          <button class="btn-sm btn-icon btn-open-web" data-email="${escapeHtml(entry.email)}" title="${escapeHtml(STR.openOnTempyTitle)}" aria-label="${escapeHtml(STR.openOnTempyTitle)}">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 10H2V2H6V1H2C1.45 1 1 1.45 1 2V10C1 10.55 1.45 11 2 11H10C10.55 11 11 10.55 11 10V6H10V10ZM7 1V2H9.59L3.76 7.83L4.46 8.53L10.29 2.71V5.29H11.29V1H7Z" fill="currentColor"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    `;
+    const row = document.createElement("div");
+    row.className = "email-row";
+
+    const address = document.createElement("div");
+    address.className = "email-address";
+    address.textContent = entry.email;
+
+    const btnNewTab = createIconButton(
+      "btn-icon btn-newtab",
+      STR.openInboxNewTabTitle,
+      STR.openInboxNewTabTitle,
+      createSvgNewTab()
+    );
+    btnNewTab.dataset.url = entry.webUrl;
+
+    row.append(address, btnNewTab);
+
+    const meta = document.createElement("div");
+    meta.className = "email-meta";
+
+    const timer = document.createElement("span");
+    timer.className = `email-timer ${remaining > 0 ? "active" : "expired"}`;
+    timer.textContent = formatTimer(remaining, (m, s) => i18n("popup_timer_remaining", [String(m), s]), STR.timerExpired);
+
+    const actions = document.createElement("div");
+    actions.className = "email-actions";
+
+    const btnCopy = document.createElement("button");
+    btnCopy.className = "btn-sm btn-copy";
+    btnCopy.dataset.email = entry.email;
+    btnCopy.textContent = STR.copy;
+
+    const btnOpen = document.createElement("button");
+    btnOpen.className = "btn-sm btn-open";
+    btnOpen.dataset.url = entry.webUrl;
+    btnOpen.textContent = STR.openInbox;
+
+    const btnOpenWeb = createIconButton(
+      "btn-sm btn-icon btn-open-web",
+      STR.openOnTempyTitle,
+      STR.openOnTempyTitle,
+      createSvgOpenWeb()
+    );
+    btnOpenWeb.dataset.email = entry.email;
+
+    actions.append(btnCopy, btnOpen, btnOpenWeb);
+    meta.append(timer, actions);
+    li.append(row, meta);
     emailList.appendChild(li);
   }
 
@@ -250,12 +333,6 @@ function openConsentPage() {
   chrome.tabs.create({ url: chrome.runtime.getURL("consent/consent.html") });
 }
 
-function escapeHtml(str) {
-  const d = document.createElement("div");
-  d.textContent = str;
-  return d.innerHTML;
-}
-
 // Polling for new messages
 function startPolling() {
   if (pollingInterval) clearInterval(pollingInterval);
@@ -295,7 +372,7 @@ function displayMessages(messages) {
   }
 
   messagesContainer.classList.remove("hidden");
-  messagesList.innerHTML = "";
+  clearChildren(messagesList);
   lastOtp = null;
 
   for (const msg of messages) {
@@ -307,13 +384,25 @@ function displayMessages(messages) {
       lastOtp = otpMatch.code;
     }
 
-    li.innerHTML = `
-      <div class="message-from">${escapeHtml(msg.from || STR.unknownSender)}</div>
-      <div class="message-subject">${escapeHtml(msg.subject || STR.noSubject)}</div>
-      ${otpMatch ? `<div class="message-otp" data-otp="${escapeHtml(otpMatch.code)}">${escapeHtml(i18n("popup_otp_label", [otpMatch.code]))}</div>` : ""}
-    `;
+    const from = document.createElement("div");
+    from.className = "message-from";
+    from.textContent = msg.from || STR.unknownSender;
 
-    const otpEl = li.querySelector(".message-otp");
+    const subject = document.createElement("div");
+    subject.className = "message-subject";
+    subject.textContent = msg.subject || STR.noSubject;
+
+    li.append(from, subject);
+
+    let otpEl = null;
+    if (otpMatch) {
+      otpEl = document.createElement("div");
+      otpEl.className = "message-otp";
+      otpEl.dataset.otp = otpMatch.code;
+      otpEl.textContent = i18n("popup_otp_label", [otpMatch.code]);
+      li.appendChild(otpEl);
+    }
+
     if (otpEl) {
       otpEl.addEventListener("click", async (e) => {
         e.preventDefault();

@@ -81,6 +81,12 @@
     }
   }
 
+  function createIconSvg() {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(ICON_SVG, "image/svg+xml");
+    return doc.documentElement;
+  }
+
   function attachOverlay(input) {
     input.setAttribute(TEMPY_ATTR, "true");
 
@@ -90,47 +96,49 @@
     host.style.cssText = "position:absolute;z-index:2147483647;pointer-events:none;";
 
     const shadow = host.attachShadow({ mode: "closed" });
-    shadow.innerHTML = `
-      <style>
-        :host { position: absolute; z-index: 2147483647; }
-        .tempy-btn {
-          all: initial;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 28px;
-          height: 28px;
-          cursor: pointer;
-          border-radius: 4px;
-          background: rgba(255, 255, 255, 0.95);
-          border: 1px solid #e0e0e0;
-          pointer-events: auto;
-          transition: all 0.15s;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-        .tempy-btn:hover {
-          border-color: #ff6b35;
-          background: #fff5f0;
-          box-shadow: 0 1px 4px rgba(255,107,53,0.2);
-        }
-        .tempy-btn:active {
-          transform: scale(0.95);
-        }
-        .tempy-btn.loading {
-          opacity: 0.5;
-          pointer-events: none;
-        }
-        .tempy-btn.success svg {
-          stroke: #27ae60;
-        }
-      </style>
-      <button class="tempy-btn" title="">${ICON_SVG}</button>
+    const style = document.createElement("style");
+    style.textContent = `
+      :host { position: absolute; z-index: 2147483647; }
+      .tempy-btn {
+        all: initial;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid #e0e0e0;
+        pointer-events: auto;
+        transition: all 0.15s;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      }
+      .tempy-btn:hover {
+        border-color: #ff6b35;
+        background: #fff5f0;
+        box-shadow: 0 1px 4px rgba(255,107,53,0.2);
+      }
+      .tempy-btn:active {
+        transform: scale(0.95);
+      }
+      .tempy-btn.loading {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .tempy-btn.success svg {
+        stroke: #27ae60;
+      }
     `;
 
-    const btn = shadow.querySelector(".tempy-btn");
+    const btn = document.createElement("button");
+    btn.className = "tempy-btn";
     const generateTitle = i18n("generate_tempy_email");
     btn.title = generateTitle;
     btn.setAttribute("aria-label", generateTitle);
+    btn.appendChild(createIconSvg());
+
+    shadow.append(style, btn);
 
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
