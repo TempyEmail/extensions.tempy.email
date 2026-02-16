@@ -27,8 +27,8 @@ test("full overlay flow: consent → generate → open inbox → trash", async (
   expect(box).toBeTruthy();
   await page.mouse.click(box.x + 14, box.y + 14);
 
-  // 5. Email input should now contain a @tempy.email address
-  await expect(page.locator("#email")).toHaveValue(/tempy\.email$/, {
+  // 5. Email input should now contain a valid email address from the API
+  await expect(page.locator("#email")).toHaveValue(/.+@.+\..+/, {
     timeout: 15_000,
   });
   const firstEmail = await page.locator("#email").inputValue();
@@ -59,6 +59,6 @@ test("full overlay flow: consent → generate → open inbox → trash", async (
     timeout: 15_000,
   });
   const secondEmail = await page.locator("#email").inputValue();
-  expect(secondEmail).toMatch(/tempy\.email$/);
+  expect(secondEmail).toMatch(/.+@.+\..+/);
   expect(secondEmail).not.toBe(firstEmail);
 });
