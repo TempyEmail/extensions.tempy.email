@@ -4,7 +4,7 @@ Use the following text in the AMO listing under data disclosure.
 
 ## Data Use Disclosure
 
-This add-on communicates with `https://api.tempy.email/*` only to provide its core functionality.
+This add-on communicates with `https://tempy.email/api/*` only to provide its core functionality.
 
 Data transmitted:
 - A mailbox creation request when the user clicks Generate or uses the context menu.

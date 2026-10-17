@@ -1,4 +1,5 @@
-const API_BASE = "https://api.tempy.email/v1";
+// The public API needs a key; the website's own endpoints proxy it without one.
+const API_BASE = "https://tempy.email/api";
 
 const generateBtn = document.getElementById("generate-btn");
 const emailList = document.getElementById("email-list");
@@ -353,7 +354,7 @@ function startPolling() {
 
 async function fetchMessages() {
   try {
-    const response = await fetch(`${API_BASE}/mailbox/${encodeURIComponent(currentMailbox)}/messages`);
+    const response = await fetch(`${API_BASE}/messages?address=${encodeURIComponent(currentMailbox)}`);
 
     if (!response.ok) {
       console.error("Failed to fetch messages:", response.status);

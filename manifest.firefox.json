@@ -10,7 +10,7 @@
     "activeTab"
   ],
   "host_permissions": [
-    "https://api.tempy.email/*"
+    "https://tempy.email/api/*"
   ],
   "background": {
     "scripts": ["background/service-worker.js"]

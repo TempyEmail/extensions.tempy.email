@@ -8,7 +8,7 @@ The Tempy Email browser extension only communicates with the tempy.email API to 
 
 ## Data We Transmit
 
-When you use the extension, it sends limited data to `https://api.tempy.email/*`:
+When you use the extension, it sends limited data to `https://tempy.email/api/*`:
 
 - Mailbox creation requests when you click Generate or use the context menu.
 - Mailbox identifiers (the generated email address) when the popup is open and it polls for messages.

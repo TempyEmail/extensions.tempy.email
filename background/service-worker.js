@@ -1,4 +1,5 @@
-const API_BASE = "https://api.tempy.email/v1";
+// The public API needs a key; the website's own endpoints proxy it without one.
+const API_BASE = "https://tempy.email/api";
 const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 
 // Context menu setup
@@ -117,7 +118,7 @@ async function ensureConsentFlow() {
 }
 
 async function createMailbox() {
-  const resp = await fetch(`${API_BASE}/mailbox`, {
+  const resp = await fetch(`${API_BASE}/inbox/create`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: "{}",

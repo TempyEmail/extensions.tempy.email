@@ -11,7 +11,7 @@
     "scripting"
   ],
   "host_permissions": [
-    "https://api.tempy.email/*"
+    "https://tempy.email/api/*"
   ],
   "background": {
     "service_worker": "background/service-worker.js"
