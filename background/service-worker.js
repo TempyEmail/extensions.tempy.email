@@ -1,4 +1,4 @@
-const API_BASE = "https://tempy.email/api/v1";
+const API_BASE = "https://api.tempy.email/v1";
 const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions) || key;
 
 // Context menu setup

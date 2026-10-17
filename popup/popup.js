@@ -1,3 +1,5 @@
+const API_BASE = "https://api.tempy.email/v1";
+
 const generateBtn = document.getElementById("generate-btn");
 const emailList = document.getElementById("email-list");
 const emptyState = document.getElementById("empty-state");
@@ -351,7 +353,7 @@ function startPolling() {
 
 async function fetchMessages() {
   try {
-    const response = await fetch(`https://tempy.email/api/v1/mailbox/${encodeURIComponent(currentMailbox)}/messages`);
+    const response = await fetch(`${API_BASE}/mailbox/${encodeURIComponent(currentMailbox)}/messages`);
 
     if (!response.ok) {
       console.error("Failed to fetch messages:", response.status);
