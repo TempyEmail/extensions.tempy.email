@@ -33,7 +33,7 @@ All components communicate via `chrome.runtime.sendMessage` with action-based me
 ### Background Service Worker
 
 `background/service-worker.js` is the API layer and coordinator:
-- **API Integration**: POSTs to `https://tempy.email/api/v1/mailbox` to create addresses
+- **API Integration**: POSTs to `https://tempy.email/api/inbox/create` (the website's keyless proxy; `/api/v1` now requires an API key) to create addresses
 - **Context Menu**: Registers "Generate Tempy Email" on editable fields
 - **Storage**: Maintains only the **latest** generated email (not a history array) in `chrome.storage.local.recentEmails`
 - **Settings**: Stores `autoDetectInputs` (show overlay icons) and `openInboxAfterGenerate` flags
@@ -46,7 +46,7 @@ When filling inputs via context menu, uses `chrome.scripting.executeScript` to i
 
 `popup/popup.js` and `popup/popup.html` show:
 - Latest generated email with live countdown timer (updates every second)
-- **Message viewer** that polls `https://tempy.email/api/v1/mailbox/{email}/messages` every 10 seconds
+- **Message viewer** that polls `https://tempy.email/api/messages?address={email}` every 10 seconds
 - Extracts and displays OTPs from message bodies using regex patterns
 - Copy to clipboard, open inbox in new tab, and settings toggles
 
@@ -78,14 +78,14 @@ Both manifests must be manually kept in sync for permissions, icons, content scr
 
 ## API Integration
 
-Backend: `https://tempy.email/api/v1`
+Backend: the website's proxy routes under `https://tempy.email/api` (the public `/api/v1` API requires an API key)
 
-**Create mailbox** (POST `/mailbox`):
+**Create mailbox** (POST `/inbox/create`):
 - Returns: `{ email, web_url, expires_at }`
 - No auth required for creation
 - Rate limited (429 response triggers user-facing error)
 
-**Fetch messages** (GET `/mailbox/{email}/messages`):
+**Fetch messages** (GET `/messages?address={email}`):
 - No authentication required
 - Returns: `{ messages: [{ from, subject, body_text, ... }] }`
 - Used by popup polling to display incoming mail

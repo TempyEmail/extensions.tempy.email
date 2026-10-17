@@ -1,6 +1,6 @@
 {
   "name": "tempy-email-extension",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Browser extension for tempy.email — instant disposable email addresses",
   "scripts": {
